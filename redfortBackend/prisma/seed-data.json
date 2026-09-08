@@ -1,0 +1,880 @@
+{
+  "services": [
+    {
+      "id": "full-stack-development",
+      "title": "Full Stack Development",
+      "icon": "Code",
+      "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800",
+      "shortDescription": "Robust, high-performance web applications using modern, enterprise-ready tech stacks.",
+      "longDescription": "RedFort AI delivers robust, high-performance Full Stack Development solutions. We build web applications using modern, enterprise-ready tech stacks like React, Next.js, and TypeScript, ensuring scalability, performance, and clean architecture from the front-end to the back-end database layer to accelerate digital transformation.",
+      "features": [
+        "Enterprise Web Applications",
+        "SaaS Platform Development",
+        "API Development & Integration",
+        "Scalable Software Architecture"
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Express"
+      ]
+    },
+    {
+      "id": "ai-ml",
+      "title": "Artificial Intelligence & Machine Learning",
+      "icon": "Brain",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800",
+      "shortDescription": "Custom machine learning models, neural networks, and predictive systems built for enterprise.",
+      "longDescription": "Our Artificial Intelligence & Machine Learning division engineers custom machine learning models, natural language processing pipelines, computer vision systems, and predictive analytics engines. These solutions enable AI-driven decision making and help global enterprises solve specific, high-value business challenges.",
+      "features": [
+        "Predictive Analytics Models",
+        "Computer Vision Systems",
+        "Natural Language Processing (NLP)",
+        "AI-Driven Decision Making"
+      ],
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "PyTorch",
+        "Hugging Face",
+        "Scikit-Learn"
+      ]
+    },
+    {
+      "id": "business-automation",
+      "title": "Business Automation",
+      "icon": "Bot",
+      "image": "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=800",
+      "shortDescription": "Intelligent agentic workflows and automated process systems to reduce operational costs.",
+      "longDescription": "We deliver comprehensive Business Automation solutions to eliminate repetitive administrative friction, reduce manual paperwork, improve employee productivity, and optimize operational workflows. Our intelligent automation architectures allow enterprise teams to focus on strategic initiatives.",
+      "features": [
+        "Reduce Manual Paperwork",
+        "Workflow Automation & Flows",
+        "Process Optimization Algorithms",
+        "Robotic Process Automation (RPA)"
+      ],
+      "technologies": [
+        "LangChain",
+        "Python",
+        "Vector Databases",
+        "n8n",
+        "Docker"
+      ]
+    },
+    {
+      "id": "ai-full-stack-solutions",
+      "title": "AI Full Stack Solutions",
+      "icon": "Layers",
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800",
+      "shortDescription": "Complete product lifecycle integrating product design, front-to-back engineering, and AI pipelines.",
+      "longDescription": "Our AI Full Stack Solutions handle the entire product lifecycle from initial discovery and design to custom full-stack development, AI model integration, and secure, containerized cloud deployment to scale business operations and increase efficiency.",
+      "features": [
+        "End-to-End AI Integration",
+        "Accelerate Digital Transformation",
+        "Scale Business Operations",
+        "Increase Efficiency & Performance"
+      ],
+      "technologies": [
+        "TypeScript",
+        "Docker",
+        "AWS",
+        "Figma",
+        "Sentry",
+        "Kubernetes"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t-1",
+      "name": "Alistair Sterling",
+      "role": "Chief Technology Officer",
+      "company": "Apex Global",
+      "text": "RedFort AI is the absolute benchmark for software engineering. They took our chaotic legacy database and migrated it to an auto-scaling cloud structure with zero downtime. Exceptional professionalism.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300"
+    },
+    {
+      "id": "t-2",
+      "name": "Dr. Rachel Thorne",
+      "role": "Clinical Director",
+      "company": "Summit Health Group",
+      "text": "The diagnostic computer vision portal they developed has reduced our review times tremendously. Patients receive priority triage in minutes. They are deeply committed to healthcare compliance and precision.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300"
+    },
+    {
+      "id": "t-3",
+      "name": "Evelyn Sterling",
+      "role": "VP of Product",
+      "company": "Nova FinTech",
+      "text": "WealthAI operates flawlessly under heavy trading pressure. Their deep machine learning expertise helped us mitigate drawdown risks. A premium, luxury-grade software service from start to finish.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300"
+    },
+    {
+      "id": "t-4",
+      "name": "Kenji Takahashi",
+      "role": "Operations Manager",
+      "company": "CoreLogistics Inc.",
+      "text": "We saved over a million gallons of fuel in our first year of deploying their routing optimizer. The ROI was clear within three months. Their developers understand high-stakes enterprise logistics.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300"
+    },
+    {
+      "id": "t-5",
+      "name": "Clara Vance",
+      "role": "Head of Customer Experience",
+      "company": "SaaSify Solutions",
+      "text": "Their automated RAG agent resolves 81% of our incoming tickets instantly. Customer satisfaction scores soared to 94% within weeks of deployment. They are truly masters of conversational AI integrations.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300"
+    },
+    {
+      "id": "t-6",
+      "name": "Garrick Mercer",
+      "role": "Engineering Director",
+      "company": "Quantum Automotive",
+      "text": "Their cloud IoT telemetry loops keep us perfectly informed of remote vehicle diagnostics. They write pristine, standard-compliant TypeScript code. Our internal team easily picked up where they left off.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300"
+    },
+    {
+      "id": "t-7",
+      "name": "Isabella Rossi",
+      "role": "Director of Digital Marketing",
+      "company": "Vanguard Retail",
+      "text": "The dynamic e-commerce recommendation system they built grew our average checkout basket value by 28%. Spacing, layout, and performance are visually spectacular. Our conversions have never been higher.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300"
+    },
+    {
+      "id": "t-8",
+      "name": "Arjan Dev",
+      "role": "VP of Operations",
+      "company": "GridSense Power",
+      "text": "Integrating AI solar forecasting into our micro-grids has completely stabilized our localized power distributions. An exceptionally professional, highly collaborative engineering partner.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300"
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "m-1",
+      "name": "Dr. Elena Rostova",
+      "role": "Founder & Chief AI Officer",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400",
+      "bio": "Elena leads the strategic development of custom AI algorithms and machine learning models at RedFort AI, focusing on enabling AI-driven decision making and advanced system intelligence.",
+      "social": {
+        "linkedin": "https://linkedin.com/company/redfort-ai",
+        "twitter": "https://twitter.com/redfortai"
+      }
+    },
+    {
+      "id": "m-2",
+      "name": "Marcus Chen",
+      "role": "Head of Software Engineering",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400",
+      "bio": "Marcus specializes in enterprise full stack engineering and clean architecture, overseeing software development cycles and robust backend integrations.",
+      "social": {
+        "linkedin": "https://linkedin.com/company/redfort-ai",
+        "twitter": "https://twitter.com/redfortai"
+      }
+    },
+    {
+      "id": "m-3",
+      "name": "Sarah Jenkins",
+      "role": "Director of Web Performance",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400",
+      "bio": "Sarah ensures our Full Stack applications are incredibly fast, responsive, and secure, utilizing modern React ecosystems and clean frontend patterns.",
+      "social": {
+        "linkedin": "https://linkedin.com/company/redfort-ai",
+        "twitter": "https://twitter.com/redfortai"
+      }
+    },
+    {
+      "id": "m-4",
+      "name": "David Vance",
+      "role": "Lead Cloud DevOps Architect",
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400",
+      "bio": "David manages our automated cloud infrastructures and secure container deployments, ensuring seamless end-to-end integration and system reliability.",
+      "social": {
+        "linkedin": "https://linkedin.com/company/redfort-ai",
+        "twitter": "https://twitter.com/redfortai"
+      }
+    },
+    {
+      "id": "m-5",
+      "name": "Chloe Mercer",
+      "role": "Head of UI/UX Design",
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400",
+      "bio": "Chloe leads the visual design and product ergonomics, crafting highly intuitive and beautiful user flows that improve overall client experience and brand trust.",
+      "social": {
+        "linkedin": "https://linkedin.com/company/redfort-ai",
+        "twitter": "https://twitter.com/redfortai"
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-fullstack",
+      "question": "What are your capabilities in Full Stack Development?",
+      "answer": "RedFort Technologies builds robust, high-performance web applications using modern, enterprise-ready tech stacks. We specialize in TypeScript, React, Next.js, Node.js, and Python, ensuring scalability, performance, and clean architecture from the front-end to the back-end database layer."
+    },
+    {
+      "id": "faq-aiml",
+      "question": "How does RedFort Technologies implement AI / ML solutions?",
+      "answer": "We engineer custom machine learning models, natural language processing pipelines, computer vision systems, and predictive analytics engines. Our models are trained and deployed on secure cloud infrastructure to solve specific, high-value business challenges."
+    },
+    {
+      "id": "faq-aiautomation",
+      "question": "What is your approach to AI Automation?",
+      "answer": "We build intelligent agentic workflows, custom RAG (Retrieval-Augmented Generation) systems, and cognitive automation tools that eliminate repetitive administrative friction, allowing enterprise teams to focus on strategic initiatives."
+    },
+    {
+      "id": "faq-endtoend",
+      "question": "Do you offer End-to-End Development?",
+      "answer": "Yes, we handle the entire product lifecycle from initial discovery and UI/UX wireframing, to custom full-stack development, AI model integration, automated QA testing, and secure, containerized cloud deployment."
+    },
+    {
+      "id": "faq-consultation",
+      "question": "How do we initiate a technical Consultation with RedFort Technologies?",
+      "answer": "You can schedule a scoping consultation through our Contact page. Our technical architects will audit your existing systems, map out a compliance and integration blueprint, and draft a high-fidelity roadmap for your project."
+    },
+    {
+      "id": "faq-process",
+      "question": "What is your standard Project Process?",
+      "answer": "We run on structured Agile sprints. Every project goes through deep scoping, wireframing, weekly active development cycles with continuous automated testing, bi-weekly client demos, staging verification, and final production deployment."
+    },
+    {
+      "id": "faq-support",
+      "question": "What level of post-launch Support do you provide?",
+      "answer": "We offer dedicated SLA agreements with 24/7 server monitoring, critical security patching, regular database backups, software dependency updates, and minor feature additions to keep your systems running flawlessly."
+    }
+  ],
+  "industries": [
+    {
+      "id": "healthcare",
+      "title": "Healthcare",
+      "icon": "Heart",
+      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "description": "Secure, HIPAA-compliant patient care software, diagnostic AI models, and medical portal applications.",
+      "benefits": [
+        "HIPAA and GDPR compliance architectures",
+        "AI-driven patient health diagnostics support",
+        "Seamless Electronic Health Record (EHR) sync",
+        "Highly secure telehealth communication rooms"
+      ]
+    },
+    {
+      "id": "fintech",
+      "title": "FinTech",
+      "icon": "TrendingUp",
+      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800",
+      "description": "Automated trading platforms, predictive credit scoring algorithms, and ultra-secure mobile payment solutions.",
+      "benefits": [
+        "Fraud detection with real-time AI modeling",
+        "Strict PCI-DSS compliant secure transfers",
+        "Microservice architectures with ultra-low latency",
+        "Detailed financial reporting analytics dashboards"
+      ]
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "icon": "GraduationCap",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800",
+      "description": "AI-powered personalized tutoring modules, digital school portals, and smart learning tracking systems.",
+      "benefits": [
+        "Adaptive learning pathways based on performance",
+        "Virtual interactive digital classrooms",
+        "Automated homework scoring with detailed stats",
+        "Robust curriculum builder tools for educators"
+      ]
+    },
+    {
+      "id": "retail",
+      "title": "Retail",
+      "icon": "ShoppingBag",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800",
+      "description": "Omnichannel inventory platforms, smart loyalty programs, and predictive supply chain modeling.",
+      "benefits": [
+        "Unified online and brick-and-mortar inventory",
+        "Personalized checkout offers driven by AI",
+        "In-store digital signage and check-in loops",
+        "Automated stock level threshold triggers"
+      ]
+    },
+    {
+      "id": "real-estate",
+      "title": "Real Estate",
+      "icon": "Home",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800",
+      "description": "Virtual property tour platforms, smart lease contracts, and market valuation estimators.",
+      "benefits": [
+        "Interactive 3D structural model visualizers",
+        "Automated lease generation and digital sign-off",
+        "Algorithmic localized market price trends",
+        "Robust CRM modules for commercial realtors"
+      ]
+    },
+    {
+      "id": "construction",
+      "title": "Construction",
+      "icon": "Hammer",
+      "image": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800",
+      "description": "Smart site tracking systems, supply chain scheduling portals, and safety compliance engines.",
+      "benefits": [
+        "Real-time site incident and progress logging",
+        "BIM (Building Information Modeling) integrations",
+        "Automated vendor dispatch schedules",
+        "Rigid safety audit check-list generators"
+      ]
+    },
+    {
+      "id": "hospitality",
+      "title": "Hospitality",
+      "icon": "Coffee",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800",
+      "description": "Dynamic pricing reservation engines, custom guest portals, and automated concierge workflows.",
+      "benefits": [
+        "Algorithmic room pricing based on live demand",
+        "Contactless virtual room key access layers",
+        "Unified channel booking rate sync tools",
+        "Intelligent guest profile loyalty preferences"
+      ]
+    },
+    {
+      "id": "travel",
+      "title": "Travel",
+      "icon": "Compass",
+      "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800",
+      "description": "Intelligent tour itinerary builders, real-time ticket engines, and travel tracker maps.",
+      "benefits": [
+        "AI-driven multi-city route path planners",
+        "Immediate flight delay text notifications",
+        "Direct GDS API connections for flight booking",
+        "Traveler expense capture and reporting logs"
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "title": "Manufacturing",
+      "icon": "Factory",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
+      "description": "Predictive machine maintenance, robotic pipeline controllers, and raw material logistics engines.",
+      "benefits": [
+        "Predictive wear-and-tear alerts with sensor AI",
+        "Digital twin machine model control loops",
+        "Strict quality control inspection checklist",
+        "Live material logistics supply tracking"
+      ]
+    },
+    {
+      "id": "automotive",
+      "title": "Automotive",
+      "icon": "Car",
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800",
+      "description": "Connected vehicle tracking, smart dealership inventory, and vehicular diagnostic systems.",
+      "benefits": [
+        "Real-time remote vehicle diagnostics over IoT",
+        "Algorithmic trade-in price valuation tools",
+        "Smart showroom scheduling and client records",
+        "Firmware-over-the-air (FOTA) patch triggers"
+      ]
+    },
+    {
+      "id": "logistics",
+      "title": "Logistics",
+      "icon": "Truck",
+      "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800",
+      "description": "AI fleet dispatch route optimization, warehouse inventory systems, and delivery tracking.",
+      "benefits": [
+        "Lowest-cost dispatch route path solutions",
+        "RFID and scanner automated cargo checks",
+        "Precise customer delivery ETA estimations",
+        "Live cold-chain temperature logger sync"
+      ]
+    },
+    {
+      "id": "e-commerce",
+      "title": "E-Commerce",
+      "icon": "CreditCard",
+      "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800",
+      "description": "High-volume secure web storefronts, recommendation carousels, and conversion funnels.",
+      "benefits": [
+        "Hyper-personalized user shopping recommendations",
+        "Optimized one-click rapid purchase checkout",
+        "Abandoned shopping cart email drip campaigns",
+        "Robust analytics capture of user scroll funnels"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "wealthai",
+      "title": "FinTech Portfolio Optimization (WealthAI)",
+      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800",
+      "problem": "A major investment firm was struggling with high latency in portfolio rebalancing and poor predictive accuracy during volatile market events using traditional statistical tools.",
+      "solution": "We engineered WealthAI, a neural transformer pipeline that processes real-time global financial news and ticker data, recalculating risk frontiers in under 12 milliseconds.",
+      "technologyUsed": [
+        "Python",
+        "PyTorch",
+        "Next.js",
+        "PostgreSQL",
+        "AWS SageMaker",
+        "gRPC"
+      ],
+      "result": "Achieved a 34% reduction in asset drawdown and boosted annual portfolio yields by 4.2% across active funds.",
+      "statistics": "34% Drawdown Reduction",
+      "clientFeedback": "RedFort AI didn't just write code; they redefined our entire algorithmic approach. WealthAI operates flawlessly under pressure."
+    },
+    {
+      "id": "medscan-ai",
+      "title": "Healthcare Automated Diagnostic Portal (MedScan AI)",
+      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "problem": "Radiologists at a private clinic network were overwhelmed with routine chest X-ray scans, resulting in an average diagnosis delay of 18 hours.",
+      "solution": "We deployed a computer vision ensemble using convolutional neural networks (CNNs) that screens scans for 14 common abnormalities, highlighting high-priority scans for rapid review.",
+      "technologyUsed": [
+        "TensorFlow",
+        "React",
+        "Node.js",
+        "Docker",
+        "Google Cloud Platform",
+        "DICOM API"
+      ],
+      "result": "Reduced average triage response times from 18 hours down to 22 minutes for acute diagnostic cases.",
+      "statistics": "22-Minute Urgent Triage",
+      "clientFeedback": "MedScan AI acts as a reliable second pair of eyes. It has substantially reduced our clinical fatigue and improved overall diagnostic confidence."
+    },
+    {
+      "id": "aurashop",
+      "title": "E-Commerce Recommender System (AuraShop)",
+      "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800",
+      "problem": "An international premium clothing brand had a high customer cart abandonment rate (74%) due to generic, static web product listings.",
+      "solution": "We built a semantic cross-selling engine that analyzes individual clickstream paths and shopping histories, displaying tailored dynamic catalog carousels.",
+      "technologyUsed": [
+        "TypeScript",
+        "LangChain",
+        "Node.js",
+        "MongoDB",
+        "Redis",
+        "Vite"
+      ],
+      "result": "Boosted user add-to-cart conversions by 19% and grew average checkout value by 28% in 90 days.",
+      "statistics": "28% Higher Cart Value",
+      "clientFeedback": "The recommendation accuracy is astounding. Our customers are discovering items they actually want to buy, increasing organic loyalty."
+    },
+    {
+      "id": "routesmart",
+      "title": "Logistics Fleet Routing Optimizer (RouteSmart)",
+      "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800",
+      "problem": "A regional delivery provider was incurring excessive fuel expenses due to inefficient delivery route path allocations across 400 active trucks.",
+      "solution": "We developed an operational algorithm utilizing combinatorial heuristics and real-time traffic telemetry to dynamically reroute active drivers.",
+      "technologyUsed": [
+        "Python",
+        "Rust",
+        "React Native",
+        "Google Maps Platform",
+        "Kubernetes"
+      ],
+      "result": "Saved over 1.2 million gallons of fuel annually, shortening average delivery windows by 18%.",
+      "statistics": "18% Shorter Delivery Windows",
+      "clientFeedback": "RouteSmart took our dispatcher's headache away. Drivers have clear paths, and fuel cost charts are dropping consistently."
+    },
+    {
+      "id": "claritybot",
+      "title": "AI Autonomous Support Portal (ClarityBot)",
+      "image": "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=800",
+      "problem": "A software-as-a-service provider was scaling rapidly, leading to extreme support ticket queues that alienated enterprise accounts.",
+      "solution": "We created ClarityBot, an LLM-powered autonomous customer agent integrated with the client's internal product documentation databases via semantic RAG.",
+      "technologyUsed": [
+        "Google GenAI SDK",
+        "LangChain",
+        "Vite",
+        "Express",
+        "Pinecone Vector DB"
+      ],
+      "result": "Successfully resolved 81% of incoming tier-1 support tickets instantly, maintaining a 94% approval rating.",
+      "statistics": "81% Automated Ticket Resolution",
+      "clientFeedback": "Our human agents can finally focus on deep enterprise accounts. ClarityBot handles standard technical inquiries with amazing grace."
+    },
+    {
+      "id": "gridsense",
+      "title": "Energy Intelligent Grid Regulator (GridSense)",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
+      "problem": "A metropolitan solar energy grid experienced recurring voltage surges and drops due to cloud coverage unpredictability.",
+      "solution": "We designed GridSense, an IoT telemetry processor that predicts localized sunlight drops using historical sensor and satellite forecasts, auto-adjusting storage flow.",
+      "technologyUsed": [
+        "Python",
+        "Scikit-Learn",
+        "FastAPI",
+        "InfluxDB",
+        "Grafana",
+        "AWS IoT Core"
+      ],
+      "result": "Stabilized network voltage within a safe 2% margin, preventing 11 major blackouts in trials.",
+      "statistics": "Zero Grid Surges in Trials",
+      "clientFeedback": "GridSense has made solar integration highly predictable. It is a massive step forward for our district energy reliability."
+    },
+    {
+      "id": "propvalue",
+      "title": "Real Estate Valuation Estimator (PropValue)",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800",
+      "problem": "Commercial realtors were wasting days researching public records to draft property valuation estimates for institutional sellers.",
+      "solution": "We compiled a regression engine that aggregates tax records, localized flight frequencies, walking scores, and transaction histories, estimating valuations instantly.",
+      "technologyUsed": [
+        "Python",
+        "XGBoost",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "Mapbox"
+      ],
+      "result": "Achieved a 97.4% valuation accuracy matching final selling prices, slashing manual research times by 90%.",
+      "statistics": "90% Less Manual Research",
+      "clientFeedback": "An invaluable tool for our sales pitches. We can generate high-quality, data-supported appraisal drafts in minutes."
+    },
+    {
+      "id": "learnsync",
+      "title": "Educational Adaptive Portal (LearnSync)",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800",
+      "problem": "A large online tutoring institution noticed a drop in course completion rates due to fixed, non-engaging syllabus patterns.",
+      "solution": "We constructed LearnSync, which monitors individual student quiz speeds, review patterns, and click pauses, generating custom daily review questions.",
+      "technologyUsed": [
+        "React",
+        "Express",
+        "Node.js",
+        "MongoDB",
+        "Python",
+        "WebSockets"
+      ],
+      "result": "Improved overall curriculum course completion rates by 42% and student test scores by an average of 15%.",
+      "statistics": "42% Higher Course Completion",
+      "clientFeedback": "Students love the personalized focus. It makes learning feel highly customized and keeps engagement remarkably high."
+    }
+  ],
+  "blogs": [
+    {
+      "id": "1",
+      "slug": "future-of-ai-first-software-engineering",
+      "title": "The Future of AI-First Software Engineering",
+      "excerpt": "Explore how autonomous agentic workflows and multi-agent systems are redefining legacy codebases and enhancing development velocity.",
+      "category": "AI / ML",
+      "author": "Dr. Elena Rostova",
+      "date": "July 12, 2026",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800",
+      "tags": [
+        "AI Agents",
+        "Software Architecture",
+        "LLMs"
+      ],
+      "content": "\n# The Future of AI-First Software Engineering\n\nOver the past decade, software engineering has evolved from manually compiling binaries on physical servers to orchestrating massive serverless clouds. Today, we are on the precipice of an even greater shift: **AI-First Software Engineering**.\n\nRather than utilizing AI simply as a tab-completion tool, modern software teams are employing **autonomous agentic workflows**. These agents are capable of parsing system specifications, writing test suites, fixing syntax errors, and deploying code directly through automated CI/CD pipelines.\n\n## Moving Beyond Tab-Completion\n\nLegacy code completion tools were primarily statistical models predicting the next most likely character sequences. While helpful, they lacked cognitive reasoning:\n1. **No context awareness**: They could not read your global codebase architecture.\n2. **No self-reflection**: They did not verify if the code they generated would compile or pass tests.\n3. **No execution capability**: They were passive editors waiting for human triggers.\n\nBy contrast, modern **multi-agent systems** coordinate. For example, a \"Product Specialist Agent\" translates a user feature description into detailed structural specifications. Next, a \"Developer Agent\" implements the code. Concurrently, a \"QA Agent\" designs exhaustive test cases, executing them in an isolated container. If an error is detected, the QA agent feeds the logs back to the developer agent to fix, continuing until the build compiles and tests pass perfectly.\n\n## Best Practices for AI-First Teams\n\nTo leverage this paradigm shift safely, technical leaders should adopt several core patterns:\n- **Comprehensive test coverage**: Without clean, automated testing suites, letting autonomous agents write code poses severe regression risks.\n- **Strict Linting & Type Checks**: Setting up rigid ESLint and TypeScript rules ensures that AI-generated code conforms immediately to project styling standards.\n- **Isolated Sandbox Environments**: Running code inside secure containers allows AI agents to verify runtime executions without compromising production databases.\n\nAs AI models continue to expand their token limits and reasoning depth, the role of human engineers will transition from writing manual syntax to orchestrating system intent. At RedFort AI, we are building this future today, ensuring our architectures are scalable, secure, and ready for future integrations.\n"
+    },
+    {
+      "id": "2",
+      "slug": "demystifying-retrieval-augmented-generation",
+      "title": "Demystifying RAG for Enterprise AI",
+      "excerpt": "Learn how Retrieval-Augmented Generation bridges the gap between static foundational models and dynamic company databases.",
+      "category": "AI Automation",
+      "author": "Marcus Chen",
+      "date": "June 28, 2026",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800",
+      "tags": [
+        "RAG",
+        "Vector Databases",
+        "Enterprise AI"
+      ],
+      "content": "\n# Demystifying RAG for Enterprise AI\n\nFoundational Large Language Models (LLMs) are incredibly powerful, yet they suffer from two major limitations: **knowledge cutoff dates** and **hallucinations** when asked about private, non-public company documents.\n\nFor enterprise applications, fine-tuning a model on company documents constantly is both cost-prohibitive and structurally slow. The industry solution is **RAG: Retrieval-Augmented Generation**.\n\n## How RAG Works\n\nRAG decouples the AI's *reasoning engine* from its *long-term memory storage*. The pipeline is straightforward:\n1. **Ingest & Chunk**: Large PDF manuals, policy sheets, and wiki articles are broken into small text fragments.\n2. **Generate Embeddings**: Each text chunk is passed through an embedding model that converts it into a high-dimensional mathematical vector representing its semantic meaning.\n3. **Vector Database Lookup**: When a user asks a question, the question is also converted to a vector. We query a vector database (like Pinecone, Milvus, or Pgvector) using cosine similarity to retrieve the most relevant document chunks.\n4. **Context Injection**: The original user question and the retrieved text chunks are joined into a structured prompt, and sent to the LLM. The LLM acts as an expert reader, synthesizing a factual answer backed strictly by the provided context.\n\n## Securing RAG Deployments\n\nWhen deploying RAG for secure sectors like FinTech or Healthcare, strict access control is non-negotiable. You must ensure that a user query does not retrieve text chunks containing documents they do not have administrative permissions to view. Integrating role-based access tokens directly into your vector metadata is crucial to prevent critical data leaks.\n"
+    },
+    {
+      "id": "3",
+      "slug": "react-19-production-features",
+      "title": "React 19 in Production: Enterprise Case Study",
+      "excerpt": "We analyze the new Server Actions, the use Hook, and performance gains realized by upgrading our client platforms to React 19.",
+      "category": "Full Stack Development",
+      "author": "Sarah Jenkins",
+      "date": "June 14, 2026",
+      "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800",
+      "tags": [
+        "React 19",
+        "Frontend Performance",
+        "Web Tech"
+      ],
+      "content": "\n# React 19 in Production: Enterprise Case Study\n\nReact 19 has officially arrived, bringing massive upgrades that simplify client-server data synchronization and reduce redundant boilerplate code. At RedFort AI, we have upgraded several key client portals to React 19, observing dramatic increases in load performance.\n\n## Key Upgrades We Leverage\n\n### 1. The `use` Hook for Promises and Context\nReact 19 introduces the `use` hook, which allows you to read promises directly in the render function. This eliminates complex `useEffect` state-toggling sequences:\n```tsx\nimport { use } from 'react';\n\nfunction UserProfile({ userDataPromise }) {\n  const user = use(userDataPromise);\n  return <div>Welcome, {user.name}</div>;\n}\n```\nPairing this with React `Suspense` allows us to render custom loading skeletons without writing manual loading state toggles.\n\n### 2. Actions & Form State Management\nForm submissions are natively optimized in React 19 using Actions. By passing an async function to the `<form action={...}>` attribute, React automatically manages the loading, error, and pending state, exposed via hooks like `useActionState` and `useFormStatus`.\n\n## Performance Statistics\nBy adopting React 19's direct assets preloading and built-in document metadata management, our client portals recorded a **12% improvement in Largest Contentful Paint (LCP)** and a **25% decrease in Total Blocking Time (TBT)**.\n"
+    },
+    {
+      "id": "4",
+      "slug": "scaling-cloud-infrastructure-to-zero",
+      "title": "Scale-to-Zero Cloud Architectures",
+      "excerpt": "An architectural guide to deploying serverless container clusters that scale down to zero when idle to minimize cloud spend.",
+      "category": "End-to-End Development",
+      "author": "David Vance",
+      "date": "May 30, 2026",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800",
+      "tags": [
+        "Cloud Native",
+        "Kubernetes",
+        "Cost Optimization"
+      ],
+      "content": "\n# Scale-to-Zero Cloud Architectures\n\nIn modern web development, keeping virtual machines running 24/7 to handle sporadic developer environments or staging builds is an expensive habit. Modern engineering organizations are shifting toward **Scale-to-Zero Cloud Architectures**.\n\nBy employing ingress routers that queue incoming HTTP requests, we can spin down server containers entirely when they are idle, and spin them back up in under 2 seconds when a new request arrives.\n\n## Core Technologies: Knative and Cloud Run\nTo achieve scale-to-zero successfully, you need an infrastructure layer that can manage rapid container cold-starts. Google Cloud Run and Knative (built on Kubernetes) are the industry leaders.\n\n- **Fast cold-starts**: To minimize container startup times, keep your docker images extremely lean. Use multi-stage builds and avoid bloating the image with non-essential build-time tools.\n- **Request queuing**: When a server is scaling up from zero, the ingress controller must buffer the initial HTTP request, preventing client-side timeouts.\n\nUsing these patterns, RedFort AI has helped enterprises cut non-production cloud hosting expenditures by up to 68%, maintaining a seamless experience for end-users.\n"
+    },
+    {
+      "id": "5",
+      "slug": "designing-for-cognitive-ergonomics",
+      "title": "Designing for Cognitive Ergonomics in UI/UX",
+      "excerpt": "How visual rhythm, balanced white space, and micro-animations reduce user fatigue and drive digital conversions.",
+      "category": "Full Stack Development",
+      "author": "Chloe Mercer",
+      "date": "May 18, 2026",
+      "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800",
+      "tags": [
+        "UI/UX",
+        "Cognitive Design",
+        "Figma"
+      ],
+      "content": "\n# Designing for Cognitive Ergonomics in UI/UX\n\nA highly polished user interface is more than just a combination of nice colors. Outstanding design relies on **cognitive ergonomics**—the practice of structuring digital interfaces to align seamlessly with how the human brain processes visual information.\n\nWhen an interface lacks breathing room, users experience subconscious cognitive fatigue, leading to higher bounce rates and abandoned checkouts.\n\n## Visual Hierarchy and Spacing\nOur design systems at RedFort AI are strictly built around consistent grid systems. We utilize generous, deliberate margins:\n1. **Rhythm**: Give critical titles room to breathe. Avoid crowding interactive buttons immediately next to dense informational texts.\n2. **Typography Pairing**: We pair clean sans-serif typefaces (like Inter) with tech-forward mono accents to establish clear reading priorities.\n3. **Focal points**: High-contrast brand accents (such as a precise corporate red) should guide the eye directly to critical primary CTAs.\n\nBy creating consistent layout patterns, users can intuitively predict where buttons are, making digital navigation feel entirely effortless.\n"
+    },
+    {
+      "id": "6",
+      "slug": "multimodal-models-intelligent-document-processing",
+      "title": "Multi-Modal AI in Document Processing",
+      "excerpt": "Discover how advanced multi-modal models analyze layout structures, charts, and text in corporate document pipelines.",
+      "category": "AI Automation",
+      "author": "Dr. Elena Rostova",
+      "date": "May 02, 2026",
+      "image": "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=800",
+      "tags": [
+        "Multi-Modal",
+        "AI Agents",
+        "IDP"
+      ],
+      "content": "\n# Multi-Modal AI in Document Processing\n\nFor decades, OCR (Optical Character Recognition) has been used to convert scanned paper into searchable text. However, standard OCR is notoriously fragile, failing to comprehend structural data like nested tables, corporate flowcharts, or annotated blueprints.\n\nWith the rise of **Multi-Modal AI**, models can now simultaneously analyze both visual layout positions and textual contexts.\n\n## Visual Context is King\nWhen a multi-modal model (like Gemini 1.5 Pro or Flash) processes a financial statement, it does not just read the characters sequentially. It understands the **spatial alignment**:\n- It recognizes that a number directly aligned under \"Q3 Revenue\" represents a specific financial quarter metric.\n- It can interpret pie charts and immediately extract the percentage values without requiring manual pixel-coordinate mapping.\n\nAt RedFort AI, we integrate these multi-modal processing capabilities directly into corporate administrative backends, automating high-volume invoice reconciliation and compliance checks with near-zero error margins.\n"
+    },
+    {
+      "id": "7",
+      "slug": "why-nodejs-reigns-supreme-microservice-apis",
+      "title": "Why Node.js Reigns Supreme for Microservices",
+      "excerpt": "An evaluation of Node.js event-driven runtimes, modern ESM imports, and why it remains the go-to backend engine.",
+      "category": "Full Stack Development",
+      "author": "Marcus Chen",
+      "date": "April 20, 2026",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+      "tags": [
+        "NodeJS",
+        "Backend",
+        "Microservices"
+      ],
+      "content": "\n# Why Node.js Reigns Supreme for Microservices\n\nIn an era of emerging backend runtimes like Bun or Deno, Node.js remains the undisputed foundation for global enterprise microservice networks. This resilience is not due to mere historical momentum, but to active optimization and its unmatched ecosystem.\n\n## Non-Blocking I/O Performance\nNode.js was engineered from day one around the V8 JavaScript engine and a single-threaded event loop. For typical web microservices—which perform heavy I/O tasks like fetching data from databases, reading files, and forwarding API requests—Node's non-blocking model handles thousands of concurrent requests with minimal memory overhead compared to thread-per-request runtimes.\n\nFurthermore, with the native adoption of ES Modules, native TypeScript support, and built-in test runners, Node.js delivers modern, lightweight codebases that are incredibly fast to build, compile, and run.\n"
+    },
+    {
+      "id": "8",
+      "slug": "securing-fintech-realtime-generative-fraud",
+      "title": "Securing FinTech Against Generative Fraud",
+      "excerpt": "How security architectures integrate real-time biometric verification and behavioral AI to block modern deepfake vectors.",
+      "category": "AI / ML",
+      "author": "Sarah Jenkins",
+      "date": "April 08, 2026",
+      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800",
+      "tags": [
+        "FinTech",
+        "Cybersecurity",
+        "Fraud Detection"
+      ],
+      "content": "\n# Securing FinTech Against Generative Fraud\n\nGenerative AI has democratized creativity, but it has also given malicious actors sophisticated tools to execute high-impact fraud. From synthetic identities to real-time audio and visual deepfakes, traditional verification methods are failing.\n\nTo protect digital transaction pipelines, FinTech companies must deploy **multi-layered behavioral AI security**.\n\n## Real-Time Liveness Detection\nPassive photo uploads are no longer sufficient for KYC (Know Your Customer) compliance. Modern security structures require active, randomized liveness checks. Users are asked to perform specific physical gestures (e.g., look left, blink twice, speak a dynamic sequence of numbers) while backend vision algorithms analyze microscopic facial depth changes and skin color micro-fluctuations to confirm a real human presence.\n\nBy combining these liveness checks with real-time browser telemetry—such as mouse speed patterns and device network fingerprints—we create a robust fortress that stops automated botnets and synthetic deepfakes in their tracks.\n"
+    },
+    {
+      "id": "9",
+      "slug": "ai-logistics-overcoming-supply-chain-disruptions",
+      "title": "AI Logistics: Taming Supply Chain Volatility",
+      "excerpt": "Learn how predictive weather telemetry and combinatorial heuristics keep freight fleets operating on time.",
+      "category": "End-to-End Development",
+      "author": "David Vance",
+      "date": "March 24, 2026",
+      "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800",
+      "tags": [
+        "Logistics",
+        "AI Optimization",
+        "Supply Chain"
+      ],
+      "content": "\n# AI Logistics: Taming Supply Chain Volatility\n\nGlobal logistics is a game of managing chaotic variables: highway construction closures, sudden port bottlenecks, extreme weather storms, and fluctuating fuel prices. Standard static delivery schedules quickly fall apart under real-world pressures.\n\nBy integrating machine learning algorithms with real-time global weather and traffic telemetry, logistics providers can dynamically reroute cargo.\n\n## Dynamic Dispatching with Heuristics\nRather than calculating static routes in the morning, modern AI logistics systems run continuous, real-time routing solvers. If a highway collision is reported 50 miles ahead of a freight truck, the system automatically recalculates alternative lanes, updates the customer's delivery ETA, and alerts the receiving warehouse to adjust its staff schedules. This level of continuous operational awareness saves massive expenditures and maximizes customer trust.\n"
+    },
+    {
+      "id": "10",
+      "slug": "deep-learning-precision-medicine-diagnostics",
+      "title": "Deep Learning in Modern Precision Diagnostics",
+      "excerpt": "How deep learning models identify micro-anomalies in pathology slides, supporting clinical decision making.",
+      "category": "AI / ML",
+      "author": "Dr. Elena Rostova",
+      "date": "March 11, 2026",
+      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "tags": [
+        "Precision Medicine",
+        "Deep Learning",
+        "Diagnostics"
+      ],
+      "content": "\n# Deep Learning in Modern Precision Diagnostics\n\nThe human genome contains over three billion base pairs, and tumor tissue slides can exceed several gigabytes in image size. For medical pathologists, identifying microscopic cellular mutations under a traditional microscope is a time-consuming and exhausting challenge.\n\nDeep learning is rapidly transforming pathology, serving as an automated assistant that pre-screens slides to highlight micro-anomalies.\n\n## Multi-Instance Learning for Gigapixel Images\nBecause standard GPU memory cannot fit a 100,000 x 100,000 pixel tissue slide, deep learning systems divide the slide into thousands of micro-patches. Utilizing multi-instance learning (MIL), the model scans these patches, identifying malignant patterns and assigning an anomaly score. Pathologists are immediately guided to the most critical tissue sections, accelerating accurate diagnoses from several days to just a few minutes.\n"
+    },
+    {
+      "id": "11",
+      "slug": "monolithic-database-migration-serverless-sql",
+      "title": "Zero-Downtime Monolith Database Migrations",
+      "excerpt": "A step-by-step technical guide to migrating heavy legacy databases to serverless SQL with zero user downtime.",
+      "category": "End-to-End Development",
+      "author": "Marcus Chen",
+      "date": "February 28, 2026",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800",
+      "tags": [
+        "Database Migration",
+        "PostgreSQL",
+        "Serverless"
+      ],
+      "content": "\n# Zero-Downtime Monolith Database Migrations\n\nMigrating an enterprise database with millions of active rows to a modern serverless SQL instance is one of the most high-stakes operations a software architect can perform. A single configuration oversight can result in corrupted tables, prolonged application downtime, and lost business revenue.\n\nThe secret to a successful, stress-free database migration is the **dual-write, phased migration pattern**.\n\n## The 4-Step Migration Strategy\n\n### Step 1: Establish Real-Time Replication\nSet up a secure database replication pipeline (using tools like AWS Database Migration Service or Debezium) to continuously stream changes from your legacy database to the new serverless SQL instance in real-time.\n\n### Step 2: Implement Dual-Writing\nDeploy a backend update that instructs your application to write all new inserts, updates, and deletes to **both** databases simultaneously, while continuing to read strictly from the legacy database. This ensures both databases remain perfectly in sync.\n\n### Step 3: Run Validation & Reconciliation\nExecute automated scripts to compare row counts, checksums, and table structures across both environments. If discrepancies are found, reconcile them immediately without impacting live production traffic.\n\n### Step 4: Toggle the Read Traffic\nOnce validation passes consistently, update your application's environment configuration to read from the new serverless SQL database, and deprecate the legacy database after 48 hours of stable operation.\n"
+    },
+    {
+      "id": "12",
+      "slug": "why-clean-code-typescript-critical-for-nestjs",
+      "title": "Why TypeScript is Essential for NestJS Backends",
+      "excerpt": "We analyze decorator-driven dependency injection and how type-safety streamlines backend integration.",
+      "category": "Full Stack Development",
+      "author": "Sarah Jenkins",
+      "date": "February 15, 2026",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800",
+      "tags": [
+        "TypeScript",
+        "NestJS",
+        "Backend Architecture"
+      ],
+      "content": "\n# Why TypeScript is Essential for NestJS Backends\n\nWhen designing corporate-grade enterprise backends, developers need structure, reliability, and clear patterns. This is precisely why **NestJS** has grown to become the premier Node.js framework for scalable services.\n\nBy leveraging TypeScript's advanced type systems and decorator-driven decorators, NestJS brings the structure of Java's Spring Boot to the agility of the JavaScript runtime.\n\n## Type-Safe Dependency Injection\nOne of NestJS's greatest strengths is its built-in dependency injection container. By declaring dependencies in class constructors using TypeScript types, NestJS automatically resolves and instantiates instances at runtime:\n```typescript\n@Injectable()\nexport class UsersService {\n  constructor(private readonly usersRepository: UsersRepository) {}\n}\n```\nThis architecture forces a loose coupling between services, making unit testing incredibly easy by allowing developers to mock dependency instances with simple stubs.\n\nAt RedFort AI, we design our APIs using these exact strict TypeScript conventions. This guarantees that when frontend clients connect to our NestJS endpoints, the payload contracts are already perfectly defined, reducing integration friction and bugs to near zero.\n"
+    }
+  ],
+  "companyInfo": {
+    "name": "RedFort AI",
+    "tagline": "Technology and Innovation Division of RedFort Group",
+    "description": "RedFort AI is the technology and innovation division of RedFort Group, focused on Software Development, Artificial Intelligence, Machine Learning, and Intelligent Automation.",
+    "detailedDescription": "RedFort Group is a diversified technology and business solutions organization operating through five independent business divisions: RedFort AI, RedFort Store, RFT360, RedFort US, and RedFortTech. RedFort AI is the technology and innovation division focused on Software Development, Artificial Intelligence, Machine Learning, and Intelligent Automation. Our key areas of focus include Full Stack Development, AI/ML, Automation, and AI Solutions.",
+    "contact": {
+      "email": "hello@redfortai.com",
+      "phone": "+1 (800) 555-0192",
+      "address": "Wah Cantt, Pakistan • Islamabad, Pakistan",
+      "workingHours": "Mon - Fri: 9:00 AM - 6:00 PM PKT",
+      "googleMapsEmbedPlaceholder": "Wah Cantt & Islamabad, Pakistan"
+    },
+    "socials": {
+      "linkedin": "https://linkedin.com/company/redfort-ai",
+      "twitter": "https://twitter.com/redfortai",
+      "github": "https://github.com/redfortai"
+    },
+    "divisions": [
+      {
+        "name": "RedFort AI",
+        "focus": "Technology & Innovation Division"
+      },
+      {
+        "name": "RedFort Store",
+        "focus": "Business Solutions Division"
+      },
+      {
+        "name": "RFT360",
+        "focus": "Business Solutions Division"
+      },
+      {
+        "name": "RedFort US",
+        "focus": "Business Solutions Division"
+      },
+      {
+        "name": "RedFortTech",
+        "focus": "Business Solutions Division"
+      }
+    ],
+    "outcomes": [
+      "Reduce manual paperwork",
+      "Improve employee productivity",
+      "Accelerate digital transformation",
+      "Enable AI-driven decision making",
+      "Reduce operational costs",
+      "Improve customer experience",
+      "Scale business operations",
+      "Increase efficiency and business performance"
+    ],
+    "clientLogos": [
+      {
+        "name": "Apex Global",
+        "logo": "Apex"
+      },
+      {
+        "name": "Nova FinTech",
+        "logo": "Nova"
+      },
+      {
+        "name": "Summit Health",
+        "logo": "Summit"
+      },
+      {
+        "name": "CoreLogistics",
+        "logo": "Core"
+      },
+      {
+        "name": "Vanguard Retail",
+        "logo": "Vanguard"
+      },
+      {
+        "name": "Quantum Auto",
+        "logo": "Quantum"
+      }
+    ],
+    "partnerLogos": [
+      {
+        "name": "AWS Partner Network",
+        "logo": "AWS"
+      },
+      {
+        "name": "Microsoft Silver Partner",
+        "logo": "Microsoft"
+      },
+      {
+        "name": "Google Cloud Partner",
+        "logo": "Google Cloud"
+      },
+      {
+        "name": "NVIDIA Inception Program",
+        "logo": "NVIDIA"
+      },
+      {
+        "name": "Oracle Gold Partner",
+        "logo": "Oracle"
+      }
+    ]
+  },
+  "statistics": [
+    {
+      "id": "stat-1",
+      "value": "50+",
+      "label": "Projects Completed"
+    },
+    {
+      "id": "stat-2",
+      "value": "30+",
+      "label": "Happy Clients"
+    },
+    {
+      "id": "stat-3",
+      "value": "12+",
+      "label": "Industries Served"
+    },
+    {
+      "id": "stat-4",
+      "value": "5+",
+      "label": "Years Experience"
+    },
+    {
+      "id": "stat-5",
+      "value": "98%",
+      "label": "Client Satisfaction"
+    }
+  ]
+}

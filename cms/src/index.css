@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --color-primary-red: #dc2626;
+  --color-primary-red-hover: #b91c1c;
+  --color-sidebar-bg: #111111;
+  --color-text-dark: #111827;
+  --color-text-gray: #6b7280;
+  --color-border-gray: #e5e7eb;
+}
+
+/* Custom scrollbars for a premium dashboard feeling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-dark);
+  background-color: #fcfcfc;
+}
+
+/* Custom bullet/number styling for editor content and display */
+.prose ul, .rich-text-content ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose ol, .rich-text-content ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose li, .rich-text-content li {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  display: list-item !important;
+}
+
+.prose blockquote, .rich-text-content blockquote {
+  border-left: 4px solid #dc2626 !important;
+  padding-left: 1rem !important;
+  font-style: italic !important;
+  color: #4b5563 !important;
+  margin: 1rem 0 !important;
+}
+
+.prose h1, .rich-text-content h1 {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose h2, .rich-text-content h2 {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin-top: 0.875rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose h3, .rich-text-content h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+
+/* Placeholder for the contentEditable rich-text canvas.
+   A div has no native placeholder, so the hint is stored in data-placeholder
+   and drawn only while the editor is empty. */
+.rte-placeholder:empty::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+}

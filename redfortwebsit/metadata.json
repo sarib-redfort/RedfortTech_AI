@@ -1,0 +1,6 @@
+{
+  "name": "RedFort AI",
+  "description": "RedFort AI delivers innovative and premium AI solutions, software engineering, and digital transformation for global enterprises.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

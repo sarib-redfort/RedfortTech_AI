@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-red-600: #D32F2F;
+  --color-red-700: #B71C1C;
+  --color-brand-red: #D32F2F;
+  --color-brand-black: #000000;
+  --color-dark-card: #080808;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: #000000;
+  color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+}
+
+.hero-heading-line {
+  display: block;
+}
+
+[data-animate="heading"],
+[data-animate="text"],
+.heading-word-span,
+.hero-heading-line {
+  will-change: transform, opacity;
+}
+
+/* Red Vertical Top Beam Glow — REDUCED BY 10% */
+.top-light-beam {
+  background: radial-gradient(ellipse 40% 600px at 50% 0%, rgba(211, 47, 47, 0.25) 0%, rgba(211, 47, 47, 0.07) 45%, transparent 80%);
+}
+
+.top-light-beam-subtle {
+  background: radial-gradient(ellipse 50% 450px at 50% 0%, rgba(211, 47, 47, 0.13) 0%, rgba(211, 47, 47, 0.02) 50%, transparent 85%);
+}
+
+/* Radar / Sonar concentric ring pulse */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-radar-ring-1 {
+  animation: radar-pulse 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-radar-ring-2 {
+  animation: radar-pulse 3s cubic-bezier(0, 0.2, 0.8, 1) infinite 1s;
+}
+
+.animate-radar-ring-3 {
+  animation: radar-pulse 3s cubic-bezier(0, 0.2, 0.8, 1) infinite 2s;
+}
+
+/* Infinite Marquee horizontal scroll */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 25s linear infinite;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+/* Footer Gradient Text Sweep */
+@keyframes red-text-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-red-sweep {
+  background: linear-gradient(90deg, #FFFFFF 0%, #D32F2F 35%, #FFFFFF 70%, #D32F2F 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: red-text-sweep 8s ease infinite;
+}
+
+/* 3D Glass & Red Glow Card Utilities — OVERALL GLOW REDUCED BY 10% */
+.red-glow-card {
+  background: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.red-glow-card:hover {
+  border-color: rgba(211, 47, 47, 0.22);
+  box-shadow: 0 0 3px rgba(211, 47, 47, 0.035), inset 0 0 1px rgba(211, 47, 47, 0.01);
+  transform: translateY(-4px);
+}
+
+.red-highlight-card {
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.07) 0%, rgba(8, 8, 8, 0.95) 100%);
+  border: 1px solid rgba(211, 47, 47, 0.3);
+  box-shadow: 0 0 7px rgba(211, 47, 47, 0.07);
+}
+
+/* Glassmorphism Pill Navbar */
+.glass-pill-nav {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 3px rgba(211, 47, 47, 0.05);
+}
+
+/* AOS OVERRIDES */
+[data-aos] {
+  will-change: transform, opacity;
+  pointer-events: auto !important;
+}
+
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translate3d(0, 50px, 0) scale(0.96) !important;
+  transition-property: transform, opacity !important;
+}
+
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
