@@ -1,6 +1,0 @@
-{
-  "name": "RedForAI CMS",
-  "description": "A highly polished, responsive CMS Admin Dashboard with a clean aesthetic and custom brand components.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
