@@ -12,7 +12,7 @@ import TextArea from '../../components/forms/TextArea';
 import Select from '../../components/forms/Select';
 import ImageUpload from '../../components/forms/ImageUpload';
 import { toast } from 'react-hot-toast';
-import { apiClient } from '../../services';
+import { apiClient, toErrorMessage } from '../../services';
 import { normalizeImageUrl } from '../../lib/image';
 import { logger } from '../../lib/logger';
 
@@ -287,7 +287,7 @@ export default function CmsView({
       toast.success('Homepage configurations saved!');
     } catch (error: any) {
       logger.error('[CMS] Failed to save homepage:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to save homepage');
+      toast.error(toErrorMessage(error, 'Failed to save homepage'));
     }
   };
 
@@ -329,7 +329,7 @@ export default function CmsView({
       toast.success('About configurations saved!');
     } catch (error: any) {
       logger.error('[CMS] Failed to save about:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to save about');
+      toast.error(toErrorMessage(error, 'Failed to save about'));
     }
   };
 

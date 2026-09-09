@@ -1,5 +1,7 @@
 import {
   IsEmail,
+  MinLength,
+  MaxLength,
   IsEnum,
   IsNotEmpty,
   IsOptional,
@@ -22,6 +24,10 @@ export class CreateUserDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
+  // bcrypt ignores anything past 72 bytes, so a longer value would be
+  // silently truncated rather than fully checked at login.
+  @MinLength(8, { message: 'Password must be at least 8 characters long' })
+  @MaxLength(72, { message: 'Password must not exceed 72 characters' })
   password: string;
 
   @ApiPropertyOptional({ enum: Role, default: Role.ContentWriter })

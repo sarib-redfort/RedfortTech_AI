@@ -4,12 +4,19 @@
  */
 
 import { memo, useMemo } from 'react';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 interface HtmlContentProps {
   html?: string | null;
   className?: string;
 }
 
+/**
+ * Content is sometimes stored entity-encoded by the rich-text editor, so it is
+ * decoded before rendering. That step turns `&lt;script&gt;` back into a live
+ * `<script>`, so the result MUST be sanitized afterwards — decoding alone
+ * converts safely-escaped input into executable markup.
+ */
 const decodeHtmlEntities = (value: string) => {
   if (!value) return '';
 
@@ -23,7 +30,7 @@ const decodeHtmlEntities = (value: string) => {
 };
 
 function HtmlContent({ html = '', className = '' }: HtmlContentProps) {
-  const content = useMemo(() => decodeHtmlEntities(html), [html]);
+  const content = useMemo(() => sanitizeHtml(decodeHtmlEntities(html ?? '')), [html]);
 
   return (
     <div

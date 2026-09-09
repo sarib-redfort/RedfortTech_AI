@@ -21,6 +21,7 @@ import {
 import type { Response } from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
+import { ParseImageFilePipe } from '../common/pipes/parse-image-file.pipe';
 @ApiTags('Uploads')
 @Controller()
 export class UploadController {
@@ -44,7 +45,9 @@ export class UploadController {
   })
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(
-    @UploadedFile() file: Express.Multer.File,
+    // Every other controller validates uploads through this pipe; without it
+    // this endpoint accepted any file of any size or type, including SVG.
+    @UploadedFile(ParseImageFilePipe) file: Express.Multer.File,
     @Param('folder') folder: string,
   ) {
     // Valid folders based on requirements

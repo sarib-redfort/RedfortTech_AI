@@ -18,6 +18,7 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from '@prisma/client';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Admin / Contacts')
 @ApiBearerAuth()
@@ -61,6 +62,8 @@ export class ContactsPublicController {
   constructor(private readonly contactsService: ContactsService) {}
 
   @ApiOperation({ summary: 'Submit a new contact message' })
+  // Unauthenticated write endpoint: without a limit it is an open spam relay.
+  @Throttle({ default: { ttl: 60_000, limit: 3 } })
   @Post()
   create(@Body() createContactDto: CreateContactDto) {
     return this.contactsService.create(createContactDto);

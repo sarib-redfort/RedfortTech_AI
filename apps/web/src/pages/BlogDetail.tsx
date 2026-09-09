@@ -9,6 +9,7 @@ import { MotionTilt } from "../components/ui/MotionTilt";
 import { MotionCard } from "../components/ui/MotionCard";
 import { apiUrl, getImageUrl } from "../lib/api";
 import { logger } from '../lib/logger';
+import { sanitizeHtml } from "../lib/sanitize";
 
 export default function BlogDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -75,9 +76,20 @@ export default function BlogDetail() {
   useEffect(() => {
     const ac = new AbortController();
     fetch(apiUrl("/blogs"), { signal: ac.signal })
-      .then((res) => (res.ok ? res.json() : []))
-      .then((data: any[]) => {
-        const related = (data || [])
+      .then((res) => (res.ok ? res.json() : null))
+      .then((raw: any) => {
+        // The API wraps every payload as { success, message, data }. Treating
+        // that object as an array made .filter throw straight into the catch
+        // below, so related posts silently never appeared.
+        const list: any[] = Array.isArray(raw)
+          ? raw
+          : Array.isArray(raw?.data)
+            ? raw.data
+            : Array.isArray(raw?.data?.data)
+              ? raw.data.data
+              : [];
+
+        const related = list
           .filter((b: any) => (b.slug || b._id) !== slug)
           .slice(0, 3)
           .map((it: any) => ({
@@ -94,38 +106,18 @@ export default function BlogDetail() {
           }));
         setRelatedBlogs(related);
       })
-      .catch(() => {});
+      .catch((err) => {
+        if (err?.name === "AbortError") return;
+        logger.error("BlogDetail: related posts failed", err);
+      });
 
     return () => ac.abort();
   }, [slug]);
 
-  // Handle fallback if slug is not located in database
-  if (!currentPost) {
-    return (
-      <div className="bg-black min-h-screen pt-32 pb-20 text-center font-sans">
-        <div className="max-w-md mx-auto space-y-6">
-          <div className="text-red-600">
-            <LucideIcon name="ShieldAlert" className="w-16 h-16 mx-auto animate-bounce" />
-          </div>
-          <h2 className="text-3xl font-sans font-extrabold text-white">
-            Article Not Located
-          </h2>
-          <p className="text-neutral-400 text-sm">
-            The technical publication you are searching for does not exist in our database. It may
-            have been renamed or deprecated.
-          </p>
-          <button
-            onClick={() => navigate("/blog")}
-            className="bg-red-600 hover:bg-red-600/90 text-white font-mono font-bold text-xs tracking-widest px-8 py-3.5 rounded-xl shadow-[0_0_15px_#D32F2F] transition-all"
-          >
-            RETURN TO PUBLICATIONS
-          </button>
-        </div>
-      </div>
-    );
-  }
 
-
+  // Order matters: currentPost is null until the fetch resolves, so the
+  // not-found screen must come last or it renders during every load and
+  // makes the loading and error states unreachable.
   if (loading) {
     return (
       <div className="bg-black min-h-screen pt-32 pb-20 text-center font-sans">
@@ -148,6 +140,32 @@ export default function BlogDetail() {
           </div>
           <h2 className="text-3xl font-sans font-extrabold text-white">Unable to load article</h2>
           <p className="text-neutral-400 text-sm">{error}</p>
+          <button
+            onClick={() => navigate("/blog")}
+            className="bg-red-600 hover:bg-red-600/90 text-white font-mono font-bold text-xs tracking-widest px-8 py-3.5 rounded-xl shadow-[0_0_15px_#D32F2F] transition-all"
+          >
+            RETURN TO PUBLICATIONS
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Fetch finished, no error, but no article matched the slug.
+  if (!currentPost) {
+    return (
+      <div className="bg-black min-h-screen pt-32 pb-20 text-center font-sans">
+        <div className="max-w-md mx-auto space-y-6">
+          <div className="text-red-600">
+            <LucideIcon name="ShieldAlert" className="w-16 h-16 mx-auto animate-bounce" />
+          </div>
+          <h2 className="text-3xl font-sans font-extrabold text-white">
+            Article Not Located
+          </h2>
+          <p className="text-neutral-400 text-sm">
+            The technical publication you are searching for does not exist in our database. It may
+            have been renamed or deprecated.
+          </p>
           <button
             onClick={() => navigate("/blog")}
             className="bg-red-600 hover:bg-red-600/90 text-white font-mono font-bold text-xs tracking-widest px-8 py-3.5 rounded-xl shadow-[0_0_15px_#D32F2F] transition-all"
@@ -360,7 +378,7 @@ export default function BlogDetail() {
               {currentPost.content && /\/?<[a-z][\s\S]*>/i.test(currentPost.content) ? (
                 <div
                   className="prose prose-invert prose-sm md:prose-base max-w-none [&_h1]:text-white [&_h2]:text-white [&_h3]:text-white [&_p]:text-neutral-300 [&_a]:text-red-600 [&_blockquote]:border-l-red-600 [&_code]:text-red-400 [&_pre]:bg-neutral-950 [&_pre]:border [&_pre]:border-neutral-800"
-                  dangerouslySetInnerHTML={{ __html: currentPost.content }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(currentPost.content) }}
                 />
               ) : (
                 renderParagraphs(currentPost.content)

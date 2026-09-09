@@ -16,6 +16,7 @@ import * as z from 'zod';
 import { toast } from 'react-hot-toast';
 import { normalizeImageUrl } from '../../lib/image';
 import { logger } from '../../lib/logger';
+import { toErrorMessage } from '../../services';
 
 const teamMemberFormSchema = z.object({
   name: z.string().trim().min(1, 'Name is required'),
@@ -137,7 +138,7 @@ export default function TeamMembersView({
       setFormMode('list');
     } catch (error: any) {
       logger.error('[TEAM MEMBERS] Submit failed:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to save team member');
+      toast.error(toErrorMessage(error, 'Failed to save team member'));
     } finally {
       setIsSubmitting(false);
     }
@@ -237,7 +238,7 @@ export default function TeamMembersView({
                                 await onDeleteTeamMember(member.id);
                               } catch (error: any) {
                                 logger.error('[TEAM MEMBERS] Delete failed:', error);
-                                toast.error(error?.response?.data?.message || error?.message || 'Failed to delete team member');
+                                toast.error(toErrorMessage(error, 'Failed to delete team member'));
                               } finally {
                                 setDeletingTeamMemberId(null);
                               }

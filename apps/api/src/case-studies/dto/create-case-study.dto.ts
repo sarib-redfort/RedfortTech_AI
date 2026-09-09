@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { Status } from '@prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class CreateCaseStudyDto {
   @ApiProperty()
@@ -27,6 +28,7 @@ export class CreateCaseStudyDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
+  @SanitizeHtml()
   content: string;
 
   @ApiProperty({ type: [String] })

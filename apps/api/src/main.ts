@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
+import * as express from 'express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import { DbRetryInterceptor } from './common/interceptors/db-retry.interceptor';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 
 async function bootstrap() {
@@ -14,6 +16,12 @@ async function bootstrap() {
   // /api/v1/public/uploads/* can be embedded by the website and CMS,
   // which run on different origins in development.
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+
+  // Cap request bodies. Express defaults to 100kb for JSON but is unbounded
+  // for urlencoded extended payloads, and an unbounded body is a cheap DoS.
+  // File uploads go through multer, which enforces its own limit.
+  app.use(express.json({ limit: '1mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
   // CORS — driven by the ALLOWED_ORIGINS env var (comma-separated).
   // Falls back to the local website (3000) and CMS (3001) dev servers.
@@ -52,7 +60,8 @@ async function bootstrap() {
   );
 
   // Global Interceptors and Filters
-  app.useGlobalInterceptors(new TransformInterceptor());
+  // Order matters: the retry must wrap the handler, so it comes first.
+  app.useGlobalInterceptors(new DbRetryInterceptor(), new TransformInterceptor());
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   // Swagger Documentation Setup
@@ -62,13 +71,31 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  // The API docs enumerate every endpoint and schema. Useful in development,
+  // an unnecessary disclosure in production, so keep them opt-in there.
+  const exposeDocs =
+    process.env.NODE_ENV !== 'production' || process.env.ENABLE_SWAGGER === 'true';
+  if (exposeDocs) {
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api/docs', app, document);
+  }
+
+  // Fail fast on an unreachable database rather than serving 500s.
+  app.enableShutdownHooks();
 
   const port = process.env.PORT || 5000;
   await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}/api/v1`);
-  console.log(`Swagger docs:                http://localhost:${port}/api/docs`);
-  console.log(`CORS allowed origins:        ${allowedOrigins.join(', ')}`);
+  const logger = new Logger('Bootstrap');
+  logger.log(`API listening on http://localhost:${port}/api/v1`);
+  if (exposeDocs) {
+    logger.log(`Swagger docs at  http://localhost:${port}/api/docs`);
+  }
+  logger.log(`CORS allowed origins: ${allowedOrigins.join(', ')}`);
 }
-bootstrap();
+
+bootstrap().catch((error) => {
+  // Without this a failed bootstrap (bad JWT_SECRET, unreachable database)
+  // produces an unhandled rejection and an exit code that looks like success.
+  new Logger('Bootstrap').error('Failed to start the application', error);
+  process.exit(1);
+});

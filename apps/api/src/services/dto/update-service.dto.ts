@@ -1,6 +1,7 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { Status } from '@prisma/client';
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class UpdateServiceDto {
   @ApiPropertyOptional()
@@ -11,6 +12,7 @@ export class UpdateServiceDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
+  @SanitizeHtml()
   description?: string;
 
   @ApiPropertyOptional()

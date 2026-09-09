@@ -8,6 +8,7 @@ import { MotionTilt } from "../components/ui/MotionTilt";
 import { apiUrl, getImageUrl } from "../lib/api";
 import type { CaseStudy } from "../types";
 import { logger } from '../lib/logger';
+import { sanitizeHtml } from "../lib/sanitize";
 
 function capitalizeFirstCharacter(text: string) {
   if (!text) return text;
@@ -242,7 +243,7 @@ export default function CaseStudyDetail() {
                 <div
                   data-animate="text"
                   className="prose prose-invert max-w-none text-neutral-300 text-sm md:text-base leading-relaxed font-body [&_h1]:text-xl [&_h1]:md:text-2xl [&_h1]:font-sans [&_h1]:font-black [&_h1]:text-white [&_h1]:tracking-tight [&_h1]:flex [&_h1]:items-center [&_h1]:gap-2.5 [&_h1]:mt-8 [&_h1]:mb-4 [&_h1]:before:content-[''] [&_h1]:before:w-1.5 [&_h1]:before:h-6 [&_h1]:before:bg-red-600 [&_h1]:before:block [&_h1]:before:rounded [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:font-sans [&_h2]:font-black [&_h2]:text-white [&_h2]:tracking-tight [&_h2]:flex [&_h2]:items-center [&_h2]:gap-2.5 [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:before:content-[''] [&_h2]:before:w-1.5 [&_h2]:before:h-6 [&_h2]:before:bg-red-600 [&_h2]:before:block [&_h2]:before:rounded [&_h3]:text-lg [&_h3]:md:text-xl [&_h3]:font-sans [&_h3]:font-black [&_h3]:text-white [&_h3]:tracking-tight [&_h3]:flex [&_h3]:items-center [&_h3]:gap-2.5 [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:before:content-[''] [&_h3]:before:w-1.5 [&_h3]:before:h-6 [&_h3]:before:bg-red-600 [&_h3]:before:block [&_h3]:before:rounded [&_p]:mb-4 [&_p]:text-neutral-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2 [&_blockquote]:border-l-4 [&_blockquote]:border-red-600 [&_blockquote]:bg-neutral-950 [&_blockquote]:p-6 [&_blockquote]:rounded-r-xl [&_blockquote]:italic [&_blockquote]:text-neutral-200 [&_img]:w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-6 [&_a]:text-red-600 [&_a]:underline"
-                  dangerouslySetInnerHTML={{ __html: formatDisplayHtml(contentHtml) }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(formatDisplayHtml(contentHtml)) }}
                 />
               </div>
             </div>

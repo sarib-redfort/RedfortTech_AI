@@ -1,5 +1,6 @@
 import { IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class CreateHomepageDto {
   @ApiPropertyOptional()
@@ -10,6 +11,7 @@ export class CreateHomepageDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
+  @SanitizeHtml()
   heroDescription?: string;
 
   @ApiPropertyOptional()

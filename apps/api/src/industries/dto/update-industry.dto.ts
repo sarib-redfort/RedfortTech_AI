@@ -8,6 +8,7 @@ import {
 import { Status } from '@prisma/client';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class UpdateIndustryDto {
   @ApiPropertyOptional()
@@ -22,6 +23,7 @@ export class UpdateIndustryDto {
   @ApiPropertyOptional({ type: 'string', description: 'Industry description' })
   @IsString()
   @IsOptional()
+  @SanitizeHtml()
   description?: string;
 
   @ApiPropertyOptional({

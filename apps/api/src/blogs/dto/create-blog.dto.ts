@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { Status } from '@prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class CreateBlogDto {
   @ApiProperty()
@@ -27,6 +28,7 @@ export class CreateBlogDto {
   @ApiProperty({ type: 'string', description: 'Blog content as text/HTML' })
   @IsString()
   @IsNotEmpty()
+  @SanitizeHtml()
   content: string;
 
   @ApiPropertyOptional()

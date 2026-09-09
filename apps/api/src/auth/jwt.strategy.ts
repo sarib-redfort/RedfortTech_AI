@@ -10,10 +10,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private configService: ConfigService,
     private prisma: PrismaService,
   ) {
+    const secret = configService.get<string>('JWT_SECRET');
+
+    // No fallback: defaulting to a literal like 'secret' would let anyone
+    // forge a valid admin token if the variable were ever missing.
+    if (!secret) {
+      throw new Error('JWT_SECRET must be set to verify access tokens.');
+    }
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>('JWT_SECRET') || 'secret',
+      secretOrKey: secret,
     });
   }
 

@@ -28,6 +28,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from '../upload/upload.service';
 import { ParseImageFilePipe } from '../common/pipes/parse-image-file.pipe';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 @ApiTags('Admin / Users')
 @ApiBearerAuth()
@@ -85,7 +86,7 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Delete a user' })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  remove(@Param('id') id: string, @CurrentUser() actingUser: { id: string }) {
+    return this.usersService.remove(id, actingUser?.id);
   }
 }

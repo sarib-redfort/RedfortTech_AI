@@ -17,6 +17,7 @@ import * as z from 'zod';
 import { toast } from 'react-hot-toast';
 import RichTextEditor from '../../components/forms/RichTextEditor';
 import { logger } from '../../lib/logger';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 const caseStudyFormSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -269,7 +270,7 @@ export default function CaseStudiesView({
                       {/* Content excerpt preview */}
                       <div 
                         className="text-xs text-gray-500 line-clamp-3 mb-4 prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: study.content || 'No content provided.' }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(study.content) || 'No content provided.' }}
                       />
                     </div>
 

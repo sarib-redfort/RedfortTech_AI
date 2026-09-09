@@ -2,6 +2,7 @@ import { IsEnum, IsInt, IsOptional, IsString } from 'class-validator';
 import { Status } from '@prisma/client';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class UpdateTeamMemberDto {
   @ApiPropertyOptional({ type: 'string', format: 'binary' })
@@ -22,6 +23,7 @@ export class UpdateTeamMemberDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
+  @SanitizeHtml()
   description?: string;
 
   @ApiPropertyOptional()

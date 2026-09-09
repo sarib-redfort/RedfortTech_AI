@@ -1,6 +1,7 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Status } from '@prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class CreateFaqDto {
   @ApiProperty()
@@ -11,6 +12,7 @@ export class CreateFaqDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
+  @SanitizeHtml()
   answer: string;
 
   @ApiProperty({ description: 'Page routing key', example: 'HOME' })

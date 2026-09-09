@@ -18,6 +18,7 @@ import * as z from 'zod';
 import { toast } from 'react-hot-toast';
 import { motion } from 'motion/react';
 import { logger } from '../../lib/logger';
+import { toErrorMessage } from '../../services';
 
 const testimonialSchema = z.object({
   name: z.string().min(1, 'Author name is required'),
@@ -151,7 +152,7 @@ export default function TestimonialsView({
       setFormMode('list');
     } catch (error: any) {
       logger.error('[TESTIMONIALS] Submit failed:', error);
-      toast.error(error?.message || 'Failed to save testimonial');
+      toast.error(toErrorMessage(error, 'Failed to save testimonial'));
     }
   };
 

@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   ConflictException,
   NotFoundException,
@@ -7,6 +8,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PaginationDto } from '../common/dto/pagination.dto';
+import { Role, Status } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import {
   paginated,
@@ -92,7 +94,20 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    await this.findOne(id); // Check if exists
+    const existing = await this.findOne(id);
+
+    // Demoting or deactivating the only active Admin locks everyone out of
+    // user management just as surely as deleting them.
+    const losesAdmin =
+      (updateUserDto.role && updateUserDto.role !== Role.Admin) ||
+      (updateUserDto.status && updateUserDto.status !== Status.Active);
+
+    if (losesAdmin) {
+      await this.assertNotLastActiveAdmin(
+        existing,
+        'Cannot demote or deactivate the last active administrator.',
+      );
+    }
 
     if (updateUserDto.email) {
       const existingUser = await this.prisma.user.findUnique({
@@ -118,9 +133,46 @@ export class UsersService {
     return userWithoutPassword;
   }
 
-  async remove(id: string) {
-    await this.findOne(id);
+  async remove(id: string, actingUserId?: string) {
+    const user = await this.findOne(id);
+
+    if (actingUserId && actingUserId === id) {
+      throw new BadRequestException(
+        'You cannot delete your own account. Ask another administrator.',
+      );
+    }
+
+    await this.assertNotLastActiveAdmin(
+      user,
+      'Cannot delete the last active administrator.',
+    );
+
     await this.prisma.user.delete({ where: { id } });
     return { message: 'User deleted successfully' };
+  }
+
+  /**
+   * Guards against removing the final route into the admin panel.
+   *
+   * Deleting, demoting, or deactivating the only remaining active Admin would
+   * leave the CMS with no one able to manage users.
+   */
+  private async assertNotLastActiveAdmin(
+    user: { id: string; role: Role; status: Status },
+    message: string,
+  ) {
+    if (user.role !== Role.Admin || user.status !== Status.Active) return;
+
+    const otherActiveAdmins = await this.prisma.user.count({
+      where: {
+        id: { not: user.id },
+        role: Role.Admin,
+        status: Status.Active,
+      },
+    });
+
+    if (otherActiveAdmins === 0) {
+      throw new BadRequestException(message);
+    }
   }
 }

@@ -54,39 +54,33 @@ export const contactService = {
 /**
  * The signed-in user's own record.
  *
- * There is no dedicated profile endpoint; this operates on the user's row via
- * `/admin/users/:id`. The id is resolved from storage or the JWT when the
- * caller does not have it to hand.
+ * These use the self-service `/auth/me` routes rather than `/admin/users/:id`,
+ * which is Admin-only — content writers could not previously view or edit
+ * their own profile, or change their own password, without a 403.
+ *
+ * The server identifies the user from the JWT, so no id is sent.
  */
-function requireUserId(explicitId?: string): string {
-  const resolved = explicitId || resolveCurrentUserId();
-  if (!resolved) {
-    throw new Error('Could not determine the signed-in user. Please sign in again.');
-  }
-  return resolved;
-}
-
 export const profileService = {
-  getProfile: async (userId?: string): Promise<UserProfile> => {
-    const { data } = await apiClient.get(`/admin/users/${requireUserId(userId)}`);
+  getProfile: async (): Promise<UserProfile> => {
+    const { data } = await apiClient.get('/auth/me');
     return toItem<UserProfile>(data);
   },
 
   updateProfile: async (
-    payload: Partial<UserProfile> & { id?: string; password?: string },
+    payload: Pick<UserProfile, 'name' | 'email' | 'avatar'>,
   ): Promise<UserProfile> => {
-    const { id, ...body } = payload;
-    const { data } = await apiClient.patch(`/admin/users/${requireUserId(id)}`, body);
+    const { data } = await apiClient.patch('/auth/me', payload);
     return toItem<UserProfile>(data);
   },
 
+  /**
+   * The current password is verified server-side, so a stolen token alone
+   * cannot be used to lock the real owner out of their account.
+   */
   changePassword: async (
-    _currentPassword: string,
+    currentPassword: string,
     newPassword: string,
-    userId?: string,
   ): Promise<void> => {
-    // The backend authorizes by JWT and does not verify the current password,
-    // so it is collected for confirmation in the UI but not transmitted.
-    await apiClient.patch(`/admin/users/${requireUserId(userId)}`, { password: newPassword });
+    await apiClient.patch('/auth/me/password', { currentPassword, newPassword });
   },
 };

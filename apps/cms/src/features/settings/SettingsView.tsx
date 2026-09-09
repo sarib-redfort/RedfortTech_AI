@@ -14,7 +14,7 @@ import {
 import Button from "../../components/forms/Button";
 import Input from "../../components/forms/Input";
 import { toast } from "react-hot-toast";
-import { profileService } from "../../services";
+import { profileService, toErrorMessage } from "../../services";
 import { normalizeImageUrl } from "../../lib/image";
 import { logger } from '../../lib/logger';
 
@@ -57,7 +57,7 @@ export default function SettingsView({
 
   useEffect(() => {
     setProfName(currentUser?.name || "Admin User");
-    setProfEmail(currentUser?.email || "admin@redforai.com");
+    setProfEmail(currentUser?.email || "");
   }, [currentUser]);
 
   const handleSaveProfile = async (e: React.FormEvent) => {
@@ -69,7 +69,6 @@ export default function SettingsView({
 
     try {
       const updatedProfile = await profileService.updateProfile({
-        id: currentUser?.id,
         name: profName.trim(),
         email: profEmail.trim(),
       });
@@ -78,14 +77,16 @@ export default function SettingsView({
         id: currentUser?.id || updatedProfile.id,
         name: updatedProfile.name || profName.trim(),
         email: updatedProfile.email || profEmail.trim(),
-        role: currentUser?.role || "Admin",
+        // Keep the real role: defaulting to "Admin" would silently widen a
+        // content writer's menu until the next reload.
+        role: updatedProfile.role || currentUser?.role || "",
       };
 
       onProfileUpdated?.(nextUser);
       toast.success("Admin Profile Settings updated!");
     } catch (error: any) {
       logger.error("[SETTINGS] Profile update failed:", error);
-      toast.error(error?.message || "Failed to update profile");
+      toast.error(toErrorMessage(error, "Failed to update profile"));
     }
   };
 
@@ -99,20 +100,26 @@ export default function SettingsView({
       toast.error("New Password and Confirmation do not match!");
       return;
     }
-    if(newPass.length<6){
-      toast.error("password must be greater than 6 digit")
-      return ;
+    // Must match the backend rule, or the server rejects a password the form
+    // just accepted.
+    if (newPass.length < 8) {
+      toast.error("New password must be at least 8 characters long.");
+      return;
+    }
+    if (newPass === curPass) {
+      toast.error("New password must be different from the current one.");
+      return;
     }
 
     try {
-      await profileService.changePassword(curPass, newPass, currentUser?.id);
+      await profileService.changePassword(curPass, newPass);
       toast.success("Password changed successfully!");
       setCurPass("");
       setNewPass("");
       setConfPass("");
     } catch (error: any) {
       logger.error("[SETTINGS] Password change failed:", error);
-      toast.error(error?.message || "Failed to change password");
+      toast.error(toErrorMessage(error, "Failed to change password"));
     }
   };
 

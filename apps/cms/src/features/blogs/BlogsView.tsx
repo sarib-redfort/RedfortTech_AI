@@ -28,6 +28,7 @@ import * as z from "zod";
 import { toast } from "react-hot-toast";
 import RichTextEditor from "../../components/forms/RichTextEditor";
 import { logger } from '../../lib/logger';
+import { toErrorMessage } from '../../services';
 
 const blogFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -170,7 +171,7 @@ export default function BlogsView({
       setFormMode("list");
     } catch (error: any) {
       logger.error('[BLOGS] Error saving blog:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to save blog.');
+      toast.error(toErrorMessage(error, 'Failed to save blog.'));
     }
   };
 

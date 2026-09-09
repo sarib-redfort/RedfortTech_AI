@@ -17,6 +17,7 @@ import { toast } from 'react-hot-toast';
 import { motion } from 'motion/react';
 import { normalizeImageUrl } from '../../lib/image';
 import { logger } from '../../lib/logger';
+import { toErrorMessage } from '../../services';
 
 const industryFormSchema = z.object({
   title: z.string().min(1, 'Industry title is required'),
@@ -156,7 +157,7 @@ export default function IndustriesView({
       setFormMode('list');
     } catch (error: any) {
       logger.error('[INDUSTRIES] Submit failed:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to save industry');
+      toast.error(toErrorMessage(error, 'Failed to save industry'));
     } finally {
       setIsSubmitting(false);
     }
@@ -250,7 +251,7 @@ export default function IndustriesView({
                                 await onDeleteIndustry(ind.id);
                               } catch (error: any) {
                                 logger.error('[INDUSTRIES] Delete failed:', error);
-                                toast.error(error?.response?.data?.message || error?.message || 'Failed to delete industry');
+                                toast.error(toErrorMessage(error, 'Failed to delete industry'));
                               } finally {
                                 setDeletingIndustryId(null);
                               }

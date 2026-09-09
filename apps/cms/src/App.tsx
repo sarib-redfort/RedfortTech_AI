@@ -29,12 +29,14 @@ import DeleteModal from './components/common/DeleteModal';
 
 import { EMPTY_ABOUT, EMPTY_HOMEPAGE } from './constants';
 import { User, Blog, Service, CaseStudy, Contact, Testimonial, HomepageCms, AboutCms, Faq, Industry, TeamMember } from './types';
-import { userService, blogService, contactService, serviceService, faqService, testimonialService, industryService, caseStudyService, teamMemberService } from './services';
+import { authService, userService, blogService, contactService, serviceService, faqService, testimonialService, industryService, caseStudyService, teamMemberService, profileService, UNAUTHORIZED_EVENT, toErrorMessage } from './services';
 import { logger } from './lib/logger';
 
 export default function App() {
   // Authentication State
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // Distinguishes "not signed in" from "still verifying the stored token".
+  const [sessionChecked, setSessionChecked] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ id?: string; name: string; email: string; role: string } | null>(null);
 
   // Application database states
@@ -67,20 +69,59 @@ export default function App() {
     type: null,
   });
 
+  // Restoring a session means proving the stored token is still valid, not
+  // just checking that one exists. An expired or revoked token previously let
+  // the shell render, then failed every request with a toast and no way back
+  // to the login screen.
   useEffect(() => {
-    const savedToken = localStorage.getItem('token');
-    const savedUser = localStorage.getItem('user');
+    let cancelled = false;
 
-    if (savedToken) {
-      setIsAuthenticated(true);
-      if (savedUser) {
-        try {
-          setCurrentUser(JSON.parse(savedUser));
-        } catch {
-          setCurrentUser(null);
-        }
+    const restoreSession = async () => {
+      if (!authService.getStoredToken()) {
+        setSessionChecked(true);
+        return;
       }
-    }
+
+      try {
+        const user = await profileService.getProfile();
+        if (cancelled) return;
+        const restored = {
+          id: user.id,
+          name: user.name ?? '',
+          email: user.email ?? '',
+          role: user.role ?? '',
+        };
+        setCurrentUser(restored);
+        localStorage.setItem('user', JSON.stringify(restored));
+        setIsAuthenticated(true);
+      } catch {
+        if (cancelled) return;
+        authService.logout();
+        setIsAuthenticated(false);
+        setCurrentUser(null);
+      } finally {
+        if (!cancelled) setSessionChecked(true);
+      }
+    };
+
+    void restoreSession();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // The http layer emits this when any request comes back 401, so a token that
+  // expires mid-session returns the editor to the login screen instead of
+  // leaving a shell that errors on every action.
+  useEffect(() => {
+    const handleUnauthorized = () => {
+      setIsAuthenticated(false);
+      setCurrentUser(null);
+      toast.error('Your session has expired. Please sign in again.');
+    };
+
+    window.addEventListener(UNAUTHORIZED_EVENT, handleUnauthorized);
+    return () => window.removeEventListener(UNAUTHORIZED_EVENT, handleUnauthorized);
   }, []);
 
   const loadUsers = async () => {
@@ -89,7 +130,7 @@ export default function App() {
       setUsers(backendUsers);
     } catch (error: any) {
       logger.error('[APP] Failed to load users:', error);
-      toast.error(error?.message || 'Failed to load users');
+      toast.error(toErrorMessage(error, 'Failed to load users'));
     }
   };
 
@@ -99,7 +140,7 @@ export default function App() {
       setBlogs(backendBlogs);
     } catch (error: any) {
       logger.error('[APP] Failed to load blogs:', error);
-      toast.error(error?.message || 'Failed to load blogs');
+      toast.error(toErrorMessage(error, 'Failed to load blogs'));
     }
   };
 
@@ -109,7 +150,7 @@ export default function App() {
       setContacts(backendContacts);
     } catch (error: any) {
       logger.error('[APP] Failed to load contacts:', error);
-      toast.error(error?.message || 'Failed to load contacts');
+      toast.error(toErrorMessage(error, 'Failed to load contacts'));
     }
   };
 
@@ -119,7 +160,7 @@ export default function App() {
       setServices(backendServices);
     } catch (error: any) {
       logger.error('[APP] Failed to load services:', error);
-      toast.error(error?.message || 'Failed to load services');
+      toast.error(toErrorMessage(error, 'Failed to load services'));
     }
   };
 
@@ -129,7 +170,7 @@ export default function App() {
       setFaqs(backendFaqs);
     } catch (error: any) {
       logger.error('[APP] Failed to load FAQs:', error);
-      toast.error(error?.message || 'Failed to load FAQs');
+      toast.error(toErrorMessage(error, 'Failed to load FAQs'));
     }
   };
 
@@ -139,7 +180,7 @@ export default function App() {
       setTestimonials(backendTestimonials);
     } catch (error: any) {
       logger.error('[APP] Failed to load testimonials:', error);
-      toast.error(error?.message || 'Failed to load testimonials');
+      toast.error(toErrorMessage(error, 'Failed to load testimonials'));
     }
   };
 
@@ -149,7 +190,7 @@ export default function App() {
       setCaseStudies(backendCaseStudies);
     } catch (error: any) {
       logger.error('[APP] Failed to load case studies:', error);
-      toast.error(error?.message || 'Failed to load case studies');
+      toast.error(toErrorMessage(error, 'Failed to load case studies'));
     }
   };
 
@@ -159,7 +200,7 @@ export default function App() {
       setIndustries(backendIndustries);
     } catch (error: any) {
       logger.error('[APP] Failed to load industries:', error);
-      toast.error(error?.message || 'Failed to load industries');
+      toast.error(toErrorMessage(error, 'Failed to load industries'));
     }
   };
 
@@ -169,22 +210,31 @@ export default function App() {
       setTeamMembers(backendTeamMembers);
     } catch (error: any) {
       logger.error('[APP] Failed to load team members:', error);
-      toast.error(error?.message || 'Failed to load team members');
+      toast.error(toErrorMessage(error, 'Failed to load team members'));
     }
   };
 
   useEffect(() => {
     if (!isAuthenticated) return;
-    void loadUsers();
+
+    // Users and contacts are Admin-only on the API. Requesting them as a
+    // content writer returned 403 and greeted them with error toasts on every
+    // sign-in, so only fetch what this role is allowed to see.
+    const admin = currentUser?.role?.toLowerCase() === 'admin';
+
     void loadBlogs();
-    void loadContacts();
     void loadServices();
     void loadIndustries();
     void loadTeamMembers();
     void loadFaqs();
     void loadTestimonials();
     void loadCaseStudies();
-  }, [isAuthenticated]);
+
+    if (admin) {
+      void loadUsers();
+      void loadContacts();
+    }
+  }, [isAuthenticated, currentUser?.role]);
 
   const normalizedRole = currentUser?.role?.toLowerCase() || '';
   const isAdmin = normalizedRole === 'admin';
@@ -210,10 +260,9 @@ export default function App() {
   };
 
   const handleLogout = () => {
+    authService.logout();
     setIsAuthenticated(false);
     setCurrentUser(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
     toast.success('Logged out successfully!');
   };
 
@@ -232,7 +281,7 @@ export default function App() {
       await loadUsers();
     } catch (error: any) {
       logger.error('[APP] Failed to add user:', error);
-      toast.error(error?.message || 'Failed to add user');
+      toast.error(toErrorMessage(error, 'Failed to add user'));
     }
   };
   const handleEditUser = async (id: string, updatedFields: Partial<User> & { password?: string }) => {
@@ -243,7 +292,7 @@ export default function App() {
       await loadUsers();
     } catch (error: any) {
       logger.error('[APP] Failed to update user:', error);
-      toast.error(error?.message || 'Failed to update user');
+      toast.error(toErrorMessage(error, 'Failed to update user'));
     }
   };
   const triggerDeleteUser = (id: string) => {
@@ -324,7 +373,7 @@ export default function App() {
       toast.success('Service deleted successfully!');
     } catch (error: any) {
       logger.error('[APP] Failed to delete service:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to delete service');
+      toast.error(toErrorMessage(error, 'Failed to delete service'));
     }
   };
 
@@ -359,7 +408,7 @@ export default function App() {
       toast.success('Industry deleted successfully!');
     } catch (error: any) {
       logger.error('[APP] Failed to delete industry:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to delete industry');
+      toast.error(toErrorMessage(error, 'Failed to delete industry'));
     }
   };
 
@@ -426,7 +475,7 @@ export default function App() {
       toast.success('Testimonial deleted successfully!');
     } catch (error: any) {
       logger.error('[APP] Failed to delete testimonial:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to delete testimonial');
+      toast.error(toErrorMessage(error, 'Failed to delete testimonial'));
     }
   };
 
@@ -440,7 +489,7 @@ export default function App() {
       return createdCaseStudy;
     } catch (error: any) {
       logger.error('[APP] Failed to create case study:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to create case study');
+      toast.error(toErrorMessage(error, 'Failed to create case study'));
       throw error;
     }
   };
@@ -453,7 +502,7 @@ export default function App() {
       return updatedCaseStudy;
     } catch (error: any) {
       logger.error('[APP] Failed to update case study:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to update case study');
+      toast.error(toErrorMessage(error, 'Failed to update case study'));
       throw error;
     }
   };
@@ -500,7 +549,7 @@ export default function App() {
       toast.success('FAQ deleted successfully!');
     } catch (error: any) {
       logger.error('[APP] Failed to delete FAQ:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to delete FAQ');
+      toast.error(toErrorMessage(error, 'Failed to delete FAQ'));
     }
   };
 
@@ -511,7 +560,7 @@ export default function App() {
       setContacts((prev) => prev.map((c) => (c.id === id ? { ...c, ...updatedContact, status: updatedContact.status || status } : c)));
     } catch (error: any) {
       logger.error('[APP] Failed to update contact status:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to update contact status');
+      toast.error(toErrorMessage(error, 'Failed to update contact status'));
     }
   };
 
@@ -523,7 +572,7 @@ export default function App() {
       await loadContacts();
     } catch (error: any) {
       logger.error('[APP] Failed to delete contact:', error);
-      toast.error(error?.response?.data?.message || error?.message || 'Failed to delete contact');
+      toast.error(toErrorMessage(error, 'Failed to delete contact'));
     }
   };
 
@@ -538,7 +587,7 @@ export default function App() {
         await loadUsers();
       } catch (error: any) {
         logger.error('[APP] Failed to delete user:', error);
-        toast.error(error?.message || 'Failed to delete user');
+        toast.error(toErrorMessage(error, 'Failed to delete user'));
       }
     } else if (type === 'blog') {
       try {
@@ -548,7 +597,7 @@ export default function App() {
         await loadBlogs();
       } catch (error: any) {
         logger.error('[APP] Failed to delete blog:', error);
-        toast.error(error?.response?.data?.message || error?.message || 'Failed to delete blog');
+        toast.error(toErrorMessage(error, 'Failed to delete blog'));
       }
     } else if (type === 'service') {
       setServices(services.filter(s => s.id !== targetId));
@@ -564,7 +613,7 @@ export default function App() {
         toast.success('Case study deleted successfully!');
       } catch (error: any) {
         logger.error('[APP] Failed to delete case study:', error);
-        toast.error(error?.response?.data?.message || error?.message || 'Failed to delete case study');
+        toast.error(toErrorMessage(error, 'Failed to delete case study'));
       }
     } else if (type === 'team_member') {
       try {
@@ -574,7 +623,7 @@ export default function App() {
         toast.success('Team member deleted successfully!');
       } catch (error: any) {
         logger.error('[APP] Failed to delete team member:', error);
-        toast.error(error?.response?.data?.message || error?.message || 'Failed to delete team member');
+        toast.error(toErrorMessage(error, 'Failed to delete team member'));
       }
     }
   };
@@ -644,7 +693,17 @@ export default function App() {
       {/* Toast provider */}
       <Toaster position="top-right" reverseOrder={false} />
 
-      {!isAuthenticated ? (
+      {!sessionChecked ? (
+        /* Verifying a stored token. Showing the login form here would flash it
+           in front of an already-signed-in editor on every page refresh. */
+        <div className="min-h-screen flex items-center justify-center">
+          <div
+            className="h-8 w-8 animate-spin rounded-full border-2 border-gray-200 border-t-primary-red"
+            role="status"
+            aria-label="Restoring session"
+          />
+        </div>
+      ) : !isAuthenticated ? (
         <LoginPage onLoginSuccess={handleLoginSuccess} />
       ) : (
         /* PRIMARY CORE APP LAYOUT */

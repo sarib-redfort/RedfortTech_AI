@@ -15,6 +15,7 @@ import * as z from 'zod';
 import { toast } from 'react-hot-toast';
 import { normalizeImageUrl } from '../../lib/image';
 import { logger } from '../../lib/logger';
+import { toErrorMessage } from '../../services';
 
 const userFormSchema = z.object({
   name: z.string().min(1, 'Full name is required'),
@@ -107,7 +108,7 @@ export default function UsersView({
       setFormMode('list');
     } catch (error: any) {
       logger.error('[USERS] Form submission failed:', error);
-      toast.error(error?.message || 'Failed to save user');
+      toast.error(toErrorMessage(error, 'Failed to save user'));
     }
   };
 

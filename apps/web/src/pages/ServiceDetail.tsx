@@ -6,6 +6,7 @@ import { LucideIcon } from "../components/ui/LucideIcon";
 import { apiUrl } from "../lib/api";
 import type { Service } from "../types";
 import { logger } from '../lib/logger';
+import { sanitizeHtml } from "../lib/sanitize";
 
 function normalizeService(item: any): Service {
   return {
@@ -106,7 +107,7 @@ export default function ServiceDetailPage() {
           {!loading && !error && service?.description && (
             <div
               className="prose prose-invert prose-base max-w-none prose-headings:font-sans prose-p:text-neutral-300 prose-p:leading-relaxed prose-a:text-red-600 prose-li:text-neutral-300 prose-strong:text-white"
-              dangerouslySetInnerHTML={{ __html: service.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(service.description) }}
             />
           )}
 

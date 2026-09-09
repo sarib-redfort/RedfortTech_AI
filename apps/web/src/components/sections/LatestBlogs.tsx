@@ -16,9 +16,11 @@ export function LatestBlogs({ limit, showTitle = true }: LatestBlogsProps) {
   const [posts, setPosts] = useState<any[]>([]);
 
   useEffect(() => {
+    const ac = new AbortController();
+
     const load = async () => {
       try {
-        const res = await fetch(apiUrl("/blogs"));
+        const res = await fetch(apiUrl("/blogs"), { signal: ac.signal });
         if (!res.ok) {
           logger.error("LatestBlogs: fetch failed", res.status);
           setPosts([]);
@@ -39,12 +41,15 @@ export function LatestBlogs({ limit, showTitle = true }: LatestBlogsProps) {
         });
         setPosts(sorted);
       } catch (err: any) {
+        // An abort is the expected outcome when the component unmounts first.
+        if (err?.name === "AbortError") return;
         logger.error("LatestBlogs: fetch error", err);
         setPosts([]);
       }
     };
 
     load();
+    return () => ac.abort();
   }, []);
 
   const normalize = (it: any) => {

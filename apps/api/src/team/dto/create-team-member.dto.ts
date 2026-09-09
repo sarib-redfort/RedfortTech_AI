@@ -8,6 +8,7 @@ import {
 import { Status } from '@prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
+import { SanitizeHtml } from '../../common/decorators/sanitize-html.decorator';
 
 export class CreateTeamMemberDto {
   @ApiPropertyOptional({ type: 'string', format: 'binary' })
@@ -28,6 +29,7 @@ export class CreateTeamMemberDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
+  @SanitizeHtml()
   description: string;
 
   @ApiPropertyOptional()
