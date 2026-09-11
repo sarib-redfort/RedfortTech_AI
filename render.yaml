@@ -13,9 +13,10 @@
 #
 # ── Public URLs ──────────────────────────────────────────────────────────────
 # Render names a service's URL after the service: https://<name>.onrender.com.
-# If a name is already taken, Render appends a suffix and the URLs below must be
-# updated to match. They appear in exactly four places, all marked "URL":
-#   the API's ALLOWED_ORIGINS and SITE_URL, and each frontend's buildCommand.
+# Render appended the "-x56l" suffix because the plain names were taken. If the
+# services are ever recreated under different names, update every line marked
+#   "URL" below: ALLOWED_ORIGINS, SITE_URL, the sitemap rewrite, and each
+#   frontend's buildCommand.
 # The frontends cannot look the API up automatically: Render's `fromService`
 # resolves to a private-network hostname that browsers cannot reach.
 # ─────────────────────────────────────────────────────────────────────────────
@@ -61,10 +62,10 @@ services:
         value: 7d
       # URL — both frontend origins.
       - key: ALLOWED_ORIGINS
-        value: https://redforttech-web.onrender.com,https://redforttech-cms.onrender.com
+        value: https://redforttech-web-x56l.onrender.com,https://redforttech-cms-x56l.onrender.com
       # URL — the website's origin, used for absolute links in sitemap.xml.
       - key: SITE_URL
-        value: https://redforttech-web.onrender.com
+        value: https://redforttech-web-x56l.onrender.com
 
       # Secrets: entered in the Render dashboard when the Blueprint is created.
       # See docs/DEPLOYMENT.md for the exact DATABASE_URL format.
@@ -86,7 +87,7 @@ services:
     # than as a runtime variable. It is a public URL, not a secret.
     buildCommand: >-
       npm ci --include=dev &&
-      VITE_API_URL=https://redforttech-api.onrender.com/api/v1/public npm run build
+      VITE_API_URL=https://redforttech-api-x56l.onrender.com/api/v1/public npm run build
     staticPublishPath: dist
     routes:
       # Crawlers only look for the sitemap at the site root. It is generated
@@ -94,7 +95,7 @@ services:
       # Listed before the catch-all below so it is not served index.html.
       - type: rewrite
         source: /sitemap.xml
-        destination: https://redforttech-api.onrender.com/api/v1/public/sitemap.xml
+        destination: https://redforttech-api-x56l.onrender.com/api/v1/public/sitemap.xml
       # Client-side routing: every non-file path serves the app shell. Render
       # serves real files (JS bundles, robots.txt, images) before applying this.
       - type: rewrite
@@ -123,7 +124,7 @@ services:
     # URL — the admin panel calls the full API, including /admin routes.
     buildCommand: >-
       npm ci --include=dev &&
-      VITE_API_URL=https://redforttech-api.onrender.com/api/v1 npm run build
+      VITE_API_URL=https://redforttech-api-x56l.onrender.com/api/v1 npm run build
     staticPublishPath: dist
     routes:
       - type: rewrite
