@@ -1,28 +1,88 @@
+# ─────────────────────────────────────────────────────────────
 # Dependencies
+# ─────────────────────────────────────────────────────────────
 node_modules/
 
-# Environment variables — never commit real secrets
-.env
-.env.local
-.env.*.local
-!.env.example
+# Lockfiles are deliberately NOT ignored. Committing them is what makes a
+# deployment install the same dependency tree that was tested, rather than
+# whatever npm resolves on the day of the build.
 
+# ─────────────────────────────────────────────────────────────
+# Secrets and environment
+# ─────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ─────────────────────────────────────────────────────────────
 # Build output
+# ─────────────────────────────────────────────────────────────
 dist/
 build/
+out/
+.vite/
 *.tsbuildinfo
 
+# ─────────────────────────────────────────────────────────────
+# Tests and coverage
+# ─────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# ─────────────────────────────────────────────────────────────
+# Caches
+# ─────────────────────────────────────────────────────────────
+.cache/
+.turbo/
+.eslintcache
+.npm/
+*.tgz
+
+# ─────────────────────────────────────────────────────────────
 # Logs
+# ─────────────────────────────────────────────────────────────
 logs/
 *.log
 npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Editor / OS
+# ─────────────────────────────────────────────────────────────
+# Local databases
+# ─────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ─────────────────────────────────────────────────────────────
+# Data exports
+# Database dumps hold real contact submissions (names, emails, phone
+# numbers). Keep them off the remote.
+# ─────────────────────────────────────────────────────────────
+backups/
+*.dump
+*.sql.gz
+
+# ─────────────────────────────────────────────────────────────
+# Editors and operating systems
+# ─────────────────────────────────────────────────────────────
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Database backups — contain real contact submissions (names, emails, phone
-# numbers). Kept on disk, deliberately not committed.
-backups/
+# ─────────────────────────────────────────────────────────────
+# Deployment platform artifacts
+# ─────────────────────────────────────────────────────────────
+.vercel
+.netlify
