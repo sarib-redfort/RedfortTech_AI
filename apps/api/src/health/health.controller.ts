@@ -1,8 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { SkipThrottle } from '@nestjs/throttler';
 import { PrismaService } from '../prisma/prisma.service';
 
 @ApiTags('Health')
+// Probes are hit on a schedule by load balancers and uptime monitors; a 429
+// here would read as an outage and trigger restarts or false alerts.
+@SkipThrottle()
 @Controller()
 export class HealthController {
   constructor(private readonly prisma: PrismaService) {}

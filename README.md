@@ -24,20 +24,24 @@ the same PostgreSQL database through the API.
 ```bash
 npm install          # root tooling (concurrently)
 npm run setup        # installs all 3 apps, generates the Prisma client,
-                     # migrates the DB, seeds users, seeds website content
+                     # migrates the DB, and seeds website content
 npm run dev          # runs all 3 apps together
 ```
 
 Then open **http://localhost:3000** for the website and
 **http://localhost:3001** for the CMS.
 
-Sign in to the CMS with the seeded admin account:
+Then create the admin and content-writer accounts. This is a separate step
+because their passwords are taken from the environment — never from the code,
+since this repository is public:
 
-- **Email:** `admin@redforai.com`
-- **Password:** `admin123`
+```bash
+SEED_ADMIN_PASSWORD='choose-a-strong-one' SEED_WRITER_PASSWORD='and-another-one' npm run db:seed
+```
 
-A second seeded account, `writer@redforai.com` / `writer123`, has the
-ContentWriter role. **Change both passwords before this leaves localhost.**
+Sign in to the CMS as `admin@redforai.com` with the password you chose.
+Re-running the seed with new values rotates both passwords. Passwords must be
+12–72 characters.
 
 > **Ports must be free.** The three servers bind 3000, 3001 and 5000, and the
 > dev servers use `--strictPort` so a clash fails loudly instead of silently

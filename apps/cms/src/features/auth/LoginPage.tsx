@@ -165,9 +165,12 @@ export default function LoginPage({ onLoginSuccess, onNavigateToDashboard }: Log
                 Remember me
               </label>
               
+              {/* There is no self-service reset flow, so point people to an
+                  administrator. This previously displayed the admin email and
+                  password to anyone who clicked it. */}
               <button
                 type="button"
-                onClick={() => toast.success('Demo: Please use default credentials\n(admin@redforai.com / admin123)')}
+                onClick={() => toast('Ask an administrator to reset your password.')}
                 className="text-primary-red hover:text-primary-red-hover font-semibold transition-colors"
               >
                 Forgot password?

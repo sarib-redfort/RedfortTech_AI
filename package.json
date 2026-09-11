@@ -5,7 +5,7 @@
   "description": "RedFort Tech platform monorepo: public website, CMS admin panel, and REST API.",
   "scripts": {
     "install:all": "npm install --prefix apps/api && npm install --prefix apps/web && npm install --prefix apps/cms",
-    "setup": "npm run install:all && npm run db:generate && npm run db:migrate && npm run db:seed && npm run db:seed:content",
+    "setup": "npm run install:all && npm run db:generate && npm run db:migrate && npm run db:seed:content",
     "dev": "concurrently -n api,web,cms -c magenta,cyan,yellow \"npm:dev:api\" \"npm:dev:web\" \"npm:dev:cms\"",
     "dev:api": "npm run --prefix apps/api start:dev",
     "dev:web": "npm run --prefix apps/web dev",
@@ -26,5 +26,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=22 <25"
   }
 }

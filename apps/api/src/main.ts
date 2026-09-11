@@ -1,4 +1,5 @@
 import { NestFactory, Reflector } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
@@ -9,7 +10,17 @@ import { DbRetryInterceptor } from './common/interceptors/db-retry.interceptor';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // Hosts like Render terminate traffic at a load balancer, so every request
+  // reaches Express from the proxy's address. Trusting one hop makes req.ip
+  // the real client from X-Forwarded-For. Without it the rate limiter keys
+  // every visitor to the same IP, and five failed logins anywhere lock out
+  // everyone. Controlled by TRUST_PROXY so local development is unaffected.
+  const trustProxy = process.env.TRUST_PROXY;
+  if (trustProxy) {
+    app.set('trust proxy', /^\d+$/.test(trustProxy) ? Number(trustProxy) : trustProxy);
+  }
 
   // Security Middleware
   // crossOriginResourcePolicy is relaxed so images served from
