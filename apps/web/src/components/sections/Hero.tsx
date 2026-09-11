@@ -217,9 +217,12 @@ export function Hero() {
             </h1>
 
             {/* Description */}
+            {/* The loading skeleton is a <span>, not a <div>: a <p> may only
+                contain phrasing content, so a block child makes the browser
+                close the paragraph early and breaks the layout. */}
             <p className="hero-cin-desc text-neutral-300 text-base md:text-lg lg:text-xl max-w-xl leading-relaxed font-body" style={{ opacity: 0 }}>
               {loading ? (
-                <div className="h-16 w-full bg-neutral-900 rounded-lg animate-pulse" />
+                <span className="block h-16 w-full bg-neutral-900 rounded-lg animate-pulse" />
               ) : (
                 heroDescription
               )}

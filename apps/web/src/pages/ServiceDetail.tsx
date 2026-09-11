@@ -7,6 +7,7 @@ import { apiUrl } from "../lib/api";
 import type { Service } from "../types";
 import { logger } from '../lib/logger';
 import { sanitizeHtml } from "../lib/sanitize";
+import Seo from "../components/Seo";
 
 function normalizeService(item: any): Service {
   return {
@@ -64,6 +65,10 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="min-h-screen bg-black text-white pt-32 pb-24 border-b border-neutral-900 relative overflow-hidden">
+      <Seo
+        title={service?.title}
+        description={service?.description?.replace(/<[^>]*>/g, "").slice(0, 200)}
+      />
       {/* Top Light Beam */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] top-light-beam-subtle pointer-events-none z-0" />
 

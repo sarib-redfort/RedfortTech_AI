@@ -6,6 +6,7 @@ import { MotionCard } from "../components/ui/MotionCard";
 import { companyInfo } from "../data/company";
 import { SectionTitle } from "../components/ui/SectionTitle";
 import { LucideIcon } from "../components/ui/LucideIcon";
+import Seo from "../components/Seo";
 
 export default function Contact() {
   const contactDetails = [
@@ -34,6 +35,10 @@ export default function Contact() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Contact"
+        description="Start a conversation with RedFort AI. Book a scoping consultation and our architects will map out a roadmap for your project."
+      />
       {/* Page Banner */}
       <PageBanner
         title="Contact RedFort AI"

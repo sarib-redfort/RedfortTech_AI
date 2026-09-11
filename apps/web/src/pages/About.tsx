@@ -13,6 +13,7 @@ import { MotionCard } from "../components/ui/MotionCard";
 import { apiUrl, getImageUrl } from "../lib/api";
 import type { TeamMember } from "../types";
 import { logger } from '../lib/logger';
+import Seo from "../components/Seo";
 
 const fallbackAboutContent = {
   title: "About Our Enterprise",
@@ -161,6 +162,10 @@ export default function About() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="About Us"
+        description="The technology and innovation division of RedFort Group, focused on software development, artificial intelligence, machine learning and automation."
+      />
       {/* Page Banner */}
       <PageBanner
         title={aboutLoading ? "Loading..." : aboutContent.title}

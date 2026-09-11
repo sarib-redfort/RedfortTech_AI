@@ -3,6 +3,7 @@ import { ServicesSection } from "../components/sections/ServicesSection";
 import { CTA } from "../components/sections/CTA";
 import { SectionTitle } from "../components/ui/SectionTitle";
 import { MotionCard } from "../components/ui/MotionCard";
+import Seo from "../components/Seo";
 
 export default function ServicesPage() {
   const processSteps = [
@@ -49,6 +50,10 @@ export default function ServicesPage() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Services"
+        description="Full stack development, AI and machine learning, intelligent automation and end-to-end product engineering for enterprise teams."
+      />
       {/* Page Banner */}
       <PageBanner
         title="Our Technical Services"

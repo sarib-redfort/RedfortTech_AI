@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { LucideIcon } from "../components/ui/LucideIcon";
+import Seo from "../components/Seo";
 
 export default function NotFound() {
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center py-20 relative overflow-hidden font-sans">
+      <Seo title="Page Not Found" noIndex />
       {/* Absolute glow effects */}
       <div className="absolute right-0 bottom-0 w-96 h-96 bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute left-10 top-10 w-48 h-48 bg-white/[0.01] rotate-45 pointer-events-none" />

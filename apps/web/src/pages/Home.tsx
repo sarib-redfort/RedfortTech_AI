@@ -10,10 +10,15 @@ import { Testimonials } from "../components/sections/Testimonials";
 import { FAQSection } from "../components/sections/FAQSection";
 import { LatestBlogs } from "../components/sections/LatestBlogs";
 import { ContactSection } from "../components/sections/ContactSection";
+import Seo from "../components/Seo";
 
 export default function Home() {
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Enterprise AI & Software Solutions"
+        description="RedFort AI builds enterprise software, AI and machine learning systems, and intelligent automation for global organisations."
+      />
       {/* 1. Hero Section */}
       <Hero />
 

@@ -40,6 +40,14 @@ export default defineConfig(({mode}) => {
           target: apiOrigin,
           changeOrigin: true,
         },
+        // The sitemap is generated from published content, so the API serves
+        // it. Production must proxy /sitemap.xml the same way — crawlers only
+        // look for it at the site root.
+        '/sitemap.xml': {
+          target: apiOrigin,
+          changeOrigin: true,
+          rewrite: () => '/api/v1/public/sitemap.xml',
+        },
       },
     },
   };

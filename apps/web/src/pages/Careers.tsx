@@ -5,6 +5,7 @@ import { SectionTitle } from "../components/ui/SectionTitle";
 import { LucideIcon } from "../components/ui/LucideIcon";
 import { MotionCard } from "../components/ui/MotionCard";
 import { CTA } from "../components/sections/CTA";
+import Seo from "../components/Seo";
 
 interface JobRole {
   id: string;
@@ -175,6 +176,10 @@ export default function CareersPage() {
 
   return (
     <div className="bg-black text-white min-h-screen font-sans">
+      <Seo
+        title="Careers"
+        description="Engineering roles at RedFort AI. Build AI systems and enterprise software with a team that ships to production."
+      />
       {/* 1. Page Banner */}
       <PageBanner
         title="Careers at RedFort AI"

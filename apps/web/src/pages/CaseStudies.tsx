@@ -2,10 +2,15 @@ import { PageBanner } from "../components/layout/PageBanner";
 import { CaseStudiesSection } from "../components/sections/CaseStudiesSection";
 import { CTA } from "../components/sections/CTA";
 import { FAQSection } from "../components/sections/FAQSection";
+import Seo from "../components/Seo";
 
 export default function CaseStudiesPage() {
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Case Studies"
+        description="How RedFort AI has delivered measurable outcomes for enterprise clients across finance, healthcare, energy and education."
+      />
       {/* Page Banner */}
       <PageBanner
         title="Our Proven Case Studies"

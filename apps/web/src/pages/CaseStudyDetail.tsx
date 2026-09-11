@@ -9,6 +9,7 @@ import { apiUrl, getImageUrl } from "../lib/api";
 import type { CaseStudy } from "../types";
 import { logger } from '../lib/logger';
 import { sanitizeHtml } from "../lib/sanitize";
+import Seo from "../components/Seo";
 
 function capitalizeFirstCharacter(text: string) {
   if (!text) return text;
@@ -197,6 +198,12 @@ export default function CaseStudyDetail() {
 
   return (
     <div className="bg-black text-white min-h-screen font-sans">
+      <Seo
+        title={currentCase.title}
+        description={currentCase.problem}
+        image={currentCase.image}
+        type="article"
+      />
       {/* Page Banner */}
       <PageBanner
         title={displayTitle}

@@ -10,6 +10,7 @@ import { MotionCard } from "../components/ui/MotionCard";
 import { apiUrl, getImageUrl } from "../lib/api";
 import { logger } from '../lib/logger';
 import { sanitizeHtml } from "../lib/sanitize";
+import Seo from "../components/Seo";
 
 export default function BlogDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -57,6 +58,10 @@ export default function BlogDetail() {
           author: it.authorName || it.createdBy || "",
           date: it.publishedAt ? new Date(it.publishedAt).toLocaleDateString() : it.createdAt ? new Date(it.createdAt).toLocaleDateString() : "",
           tags: Array.isArray(it.tags) ? it.tags : [],
+          // Authored in the CMS; previously fetched and discarded.
+          metaTitle: it.metaTitle || undefined,
+          metaDescription: it.metaDescription || undefined,
+          publishedAt: it.publishedAt || it.createdAt || undefined,
         };
 
         setCurrentPost(mapped);
@@ -270,6 +275,14 @@ export default function BlogDetail() {
     });
   };  return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title={currentPost.metaTitle || currentPost.title}
+        description={currentPost.metaDescription || currentPost.excerpt}
+        image={currentPost.image}
+        type="article"
+        publishedTime={currentPost.publishedAt}
+        author={currentPost.author}
+      />
       {/* Dynamic breadcrumb page banner */}
       <PageBanner
         title={currentPost.title}

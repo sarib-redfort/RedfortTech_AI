@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
@@ -61,7 +61,12 @@ async function bootstrap() {
 
   // Global Interceptors and Filters
   // Order matters: the retry must wrap the handler, so it comes first.
-  app.useGlobalInterceptors(new DbRetryInterceptor(), new TransformInterceptor());
+  // TransformInterceptor reads @SkipTransform metadata, so it needs the
+  // Reflector from the DI container.
+  app.useGlobalInterceptors(
+    new DbRetryInterceptor(),
+    new TransformInterceptor(app.get(Reflector)),
+  );
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   // Swagger Documentation Setup

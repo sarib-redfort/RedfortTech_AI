@@ -19,6 +19,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { IndustriesModule } from './industries/industries.module';
 import { TeamModule } from './team/team.module';
 import { HealthModule } from './health/health.module';
+import { SitemapModule } from './sitemap/sitemap.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { HealthModule } from './health/health.module';
     IndustriesModule,
     TeamModule,
     HealthModule,
+    SitemapModule,
   ],
   controllers: [],
   providers: [

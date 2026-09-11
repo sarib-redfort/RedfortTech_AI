@@ -7,6 +7,7 @@ import { LucideIcon } from "../components/ui/LucideIcon";
 import { MotionCard } from "../components/ui/MotionCard";
 import { apiUrl, getImageUrl } from "../lib/api";
 import { logger } from '../lib/logger';
+import Seo from "../components/Seo";
 
 export default function BlogIndex() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,6 +100,10 @@ export default function BlogIndex() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Blog"
+        description="Engineering and AI writing from the RedFort AI team: architecture, machine learning practice, and lessons from production systems."
+      />
       {/* Page Banner */}
       <PageBanner
         title="Engineering Publications"

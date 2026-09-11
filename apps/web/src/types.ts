@@ -44,6 +44,10 @@ export interface BlogPost {
   author: string;
   date: string;
   tags: string[];
+  /** SEO overrides authored in the CMS. Fall back to title/excerpt when unset. */
+  metaTitle?: string;
+  metaDescription?: string;
+  publishedAt?: string;
 }
 
 export interface FAQ {

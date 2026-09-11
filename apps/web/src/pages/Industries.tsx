@@ -1,10 +1,15 @@
 import { PageBanner } from "../components/layout/PageBanner";
 import { IndustriesSection } from "../components/sections/IndustriesSection";
 import { CTA } from "../components/sections/CTA";
+import Seo from "../components/Seo";
 
 export default function IndustriesPage() {
   return (
     <div className="bg-black text-white min-h-screen">
+      <Seo
+        title="Industries"
+        description="Sector-specific engineering for healthcare, fintech, e-commerce, logistics, education and more, built around each industry's compliance needs."
+      />
       {/* Page Banner */}
       <PageBanner
         title="Industries We Service"
