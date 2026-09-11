@@ -4,7 +4,7 @@ import { BlogPost } from "../../types";
 import { SectionTitle } from "../ui/SectionTitle";
 import { LucideIcon } from "../ui/LucideIcon";
 import { MotionCard } from "../ui/MotionCard";
-import { apiUrl, getImageUrl } from "../../lib/api";
+import { getImageUrl, fetchAllPages } from "../../lib/api";
 import { logger } from '../../lib/logger';
 
 interface LatestBlogsProps {
@@ -20,14 +20,9 @@ export function LatestBlogs({ limit, showTitle = true }: LatestBlogsProps) {
 
     const load = async () => {
       try {
-        const res = await fetch(apiUrl("/blogs"), { signal: ac.signal });
-        if (!res.ok) {
-          logger.error("LatestBlogs: fetch failed", res.status);
-          setPosts([]);
-          return;
-        }
-
-        const json = await res.json();
+        // All pages, so the client-side date sort below sees every post rather
+        // than only the first ten the API returns by default.
+        const json = await fetchAllPages("/blogs", { signal: ac.signal });
         const list = Array.isArray(json)
           ? json
           : Array.isArray(json?.data)

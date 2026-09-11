@@ -26,11 +26,15 @@ export function FAQSection({ limit, page, serviceId }: FAQSectionProps) {
         setLoading(true);
         setError(null);
 
+        // The FAQ endpoint uses `page` as a target-page filter rather than a
+        // page number, so it cannot be walked like other lists. Request the
+        // maximum page size instead; without `limit` the API returns only 10
+        // and any further FAQs would silently never appear.
         const url = serviceId
-          ? apiUrl(`/faqs?serviceId=${encodeURIComponent(serviceId)}`)
+          ? apiUrl(`/faqs?serviceId=${encodeURIComponent(serviceId)}&limit=100`)
           : page
-            ? apiUrl(`/faqs?page=${encodeURIComponent(page)}`)
-            : apiUrl("/faqs");
+            ? apiUrl(`/faqs?page=${encodeURIComponent(page)}&limit=100`)
+            : apiUrl("/faqs?limit=100");
 
         const response = await fetch(url);
         if (!response.ok) {

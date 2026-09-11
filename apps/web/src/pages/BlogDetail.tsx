@@ -7,7 +7,7 @@ import { CTA } from "../components/sections/CTA";
 import { LucideIcon } from "../components/ui/LucideIcon";
 import { MotionTilt } from "../components/ui/MotionTilt";
 import { MotionCard } from "../components/ui/MotionCard";
-import { apiUrl, getImageUrl } from "../lib/api";
+import { apiUrl, getImageUrl, fetchAllPages } from "../lib/api";
 import { logger } from '../lib/logger';
 import { sanitizeHtml } from "../lib/sanitize";
 import Seo from "../components/Seo";
@@ -80,8 +80,7 @@ export default function BlogDetail() {
   // Fetch list of blogs to show related posts
   useEffect(() => {
     const ac = new AbortController();
-    fetch(apiUrl("/blogs"), { signal: ac.signal })
-      .then((res) => (res.ok ? res.json() : null))
+    fetchAllPages("/blogs", { signal: ac.signal })
       .then((raw: any) => {
         // The API wraps every payload as { success, message, data }. Treating
         // that object as an array made .filter throw straight into the catch

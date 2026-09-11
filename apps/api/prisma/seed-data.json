@@ -27,7 +27,7 @@
       "id": "ai-ml",
       "title": "Artificial Intelligence & Machine Learning",
       "icon": "Brain",
-      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800",
       "shortDescription": "Custom machine learning models, neural networks, and predictive systems built for enterprise.",
       "longDescription": "Our Artificial Intelligence & Machine Learning division engineers custom machine learning models, natural language processing pipelines, computer vision systems, and predictive analytics engines. These solutions enable AI-driven decision making and help global enterprises solve specific, high-value business challenges.",
       "features": [
@@ -261,7 +261,7 @@
       "id": "healthcare",
       "title": "Healthcare",
       "icon": "Heart",
-      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800",
       "description": "Secure, HIPAA-compliant patient care software, diagnostic AI models, and medical portal applications.",
       "benefits": [
         "HIPAA and GDPR compliance architectures",
@@ -287,7 +287,7 @@
       "id": "education",
       "title": "Education",
       "icon": "GraduationCap",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800",
       "description": "AI-powered personalized tutoring modules, digital school portals, and smart learning tracking systems.",
       "benefits": [
         "Adaptive learning pathways based on performance",
@@ -436,7 +436,7 @@
     {
       "id": "medscan-ai",
       "title": "Healthcare Automated Diagnostic Portal (MedScan AI)",
-      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800",
       "problem": "Radiologists at a private clinic network were overwhelmed with routine chest X-ray scans, resulting in an average diagnosis delay of 18 hours.",
       "solution": "We deployed a computer vision ensemble using convolutional neural networks (CNNs) that screens scans for 14 common abnormalities, highlighting high-priority scans for rapid review.",
       "technologyUsed": [
@@ -542,7 +542,7 @@
     {
       "id": "learnsync",
       "title": "Educational Adaptive Portal (LearnSync)",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800",
       "problem": "A large online tutoring institution noticed a drop in course completion rates due to fixed, non-engaging syllabus patterns.",
       "solution": "We constructed LearnSync, which monitors individual student quiz speeds, review patterns, and click pauses, generating custom daily review questions.",
       "technologyUsed": [
@@ -567,7 +567,7 @@
       "category": "AI / ML",
       "author": "Dr. Elena Rostova",
       "date": "July 12, 2026",
-      "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800",
       "tags": [
         "AI Agents",
         "Software Architecture",
@@ -711,7 +711,7 @@
       "category": "AI / ML",
       "author": "Dr. Elena Rostova",
       "date": "March 11, 2026",
-      "image": "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=800",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800",
       "tags": [
         "Precision Medicine",
         "Deep Learning",

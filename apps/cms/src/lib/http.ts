@@ -93,6 +93,35 @@ export function toList<T>(body: unknown): T[] {
   return [];
 }
 
+/** Matches the API's maximum page size (MAX_PAGE_SIZE on the server). */
+const PAGE_SIZE = 100;
+
+/**
+ * Fetches every record in a paginated admin collection.
+ *
+ * Admin list endpoints return 10 records unless asked for more. Requesting
+ * them without paging meant editors saw only the first 10 blog posts or
+ * industries — the rest were unreachable in the CMS and looked deleted. This
+ * walks the pages reported in `meta`.
+ */
+export async function getAllPages<T>(path: string): Promise<T[]> {
+  const fetchPage = (page: number) =>
+    apiClient.get(path, { params: { page, limit: PAGE_SIZE } });
+
+  const first = await fetchPage(1);
+  const items = toList<T>(first.data);
+  const totalPages: number = (first.data as any)?.meta?.totalPages ?? 1;
+
+  if (totalPages > 1) {
+    const rest = await Promise.all(
+      Array.from({ length: totalPages - 1 }, (_, i) => fetchPage(i + 2)),
+    );
+    for (const response of rest) items.push(...toList<T>(response.data));
+  }
+
+  return items;
+}
+
 /** Extracts a single entity from a response. */
 export function toItem<T>(body: unknown): T {
   return unwrap<T>(body as ApiEnvelope<T>);

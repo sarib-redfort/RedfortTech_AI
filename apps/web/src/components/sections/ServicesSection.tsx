@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SectionTitle } from "../ui/SectionTitle";
 import { LucideIcon } from "../ui/LucideIcon";
 import { MotionCard } from "../ui/MotionCard";
-import { apiUrl, getImageUrl } from "../../lib/api";
+import { getImageUrl, fetchAllPages } from "../../lib/api";
 import type { Service } from "../../types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -79,9 +79,7 @@ export function ServicesSection({
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(apiUrl("/services"));
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const payload = await res.json();
+        const payload = await fetchAllPages("/services");
         const list = extractServiceList(payload).map(normalizeService);
         if (alive) setServices(list);
       } catch (e) {

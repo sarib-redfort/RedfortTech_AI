@@ -78,7 +78,9 @@ Re-running the seed with new values rotates both passwords. Passwords must be
 │           ├── lib/         api client, env, logger
 │           └── data/        static company copy (not CMS-managed)
 ├── docs/
-│   └── DATABASE.md          database state and migration notes
+│   ├── DATABASE.md          database state and migration notes
+│   └── DEPLOYMENT.md        deploying to Render, step by step
+├── render.yaml              Render Blueprint for all three apps
 └── package.json             orchestrates all three apps
 ```
 
@@ -138,6 +140,13 @@ this seed exists.
 > chat and need rotating.
 > **Read [docs/DATABASE.md](docs/DATABASE.md) before deploying.**
 
+## Deployment
+
+The repository deploys to Render from [`render.yaml`](render.yaml): the API as a
+web service, the website and CMS as static sites, with the database on Neon.
+Follow **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for the setup, the secrets
+to enter, and how to verify the result.
+
 ## Commands
 
 | Command | Effect |
@@ -149,19 +158,25 @@ this seed exists.
 | `npm run lint` | Lint/type-check all three |
 | `npm test` | API unit tests |
 | `npm run db:migrate` | Apply Prisma migrations |
-| `npm run db:seed` | Re-seed the default users |
+| `npm run db:seed` | Create or rotate the CMS accounts (needs `SEED_*_PASSWORD`) |
 | `npm run db:seed:content` | Re-seed the website content |
 | `npm run db:studio` | Open Prisma Studio |
 
 ## API
 
-Swagger UI is served at http://localhost:5000/api/docs while the API runs.
+Swagger UI is served at http://localhost:5000/api/docs in development. It is
+hidden when `NODE_ENV=production`, since it enumerates every endpoint; set
+`ENABLE_SWAGGER=true` to expose it there deliberately.
 
 All responses are wrapped by a global interceptor:
 
 ```json
 { "success": true, "message": "...", "data": ... }
 ```
+
+List endpoints also return `meta` — `{ total, page, limit, totalPages }` — and
+accept `?page=` and `?limit=` (at most 100). Clients must walk the pages; the
+default page holds only 10 records.
 
 Health endpoints for load balancers and orchestrators:
 

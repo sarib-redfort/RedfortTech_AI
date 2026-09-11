@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateFaqDto } from './dto/create-faq.dto';
 import { UpdateFaqDto } from './dto/update-faq.dto';
 import { Status } from '@prisma/client';
+import { MAX_PAGE_SIZE } from '../common/dto/pagination.dto';
 import {
   paginated,
   type ResolvedPagination,
@@ -17,8 +18,12 @@ export class FaqsService {
     const limit = query.limit; 
     const parsedPage =
       typeof page === 'string' && /^\d+$/.test(page) ? Number(page) : 1;
-    const parsedLimit =
-      typeof limit === 'string' && /^\d+$/.test(limit) ? Number(limit) : 10;
+    // FAQs parse their own query (because `page` doubles as a target-page
+    // filter), so the shared DTO's cap must be applied here as well.
+    const parsedLimit = Math.min(
+      typeof limit === 'string' && /^\d+$/.test(limit) ? Number(limit) : 10,
+      MAX_PAGE_SIZE,
+    );
 
     return {
       page: parsedPage,

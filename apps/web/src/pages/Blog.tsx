@@ -5,7 +5,7 @@ import { PageBanner } from "../components/layout/PageBanner";
 import { SectionTitle } from "../components/ui/SectionTitle";
 import { LucideIcon } from "../components/ui/LucideIcon";
 import { MotionCard } from "../components/ui/MotionCard";
-import { apiUrl, getImageUrl } from "../lib/api";
+import { getImageUrl, fetchAllPages } from "../lib/api";
 import { logger } from '../lib/logger';
 import Seo from "../components/Seo";
 
@@ -58,11 +58,7 @@ export default function BlogIndex() {
     setLoading(true);
     setError(null);
 
-    fetch(apiUrl("/blogs"), { signal: ac.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load (${res.status})`);
-        return res.json();
-      })
+    fetchAllPages("/blogs", { signal: ac.signal })
       .then((raw) => {
         logger.debug("BlogIndex API response:", raw);
         // backend may return { success, message, data: [...] }

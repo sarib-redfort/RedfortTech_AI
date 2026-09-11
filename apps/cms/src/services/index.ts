@@ -5,7 +5,7 @@
  * so resources can be split or regrouped without touching call sites.
  */
 export { apiClient, toErrorMessage, toItem, toList, UNAUTHORIZED_EVENT } from '../lib/http';
-export { authService, resolveCurrentUserId } from './auth';
+export { authService } from './auth';
 export { contactService, dashboardService, profileService } from './misc';
 export type { DashboardStats } from './misc';
 export {

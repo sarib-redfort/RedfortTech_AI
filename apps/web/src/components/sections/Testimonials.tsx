@@ -3,7 +3,7 @@ import { AnimatePresence } from "motion/react";
 import { Testimonial } from "../../types";
 import { SectionTitle } from "../ui/SectionTitle";
 import { LucideIcon } from "../ui/LucideIcon";
-import { apiUrl, getImageUrl } from "../../lib/api";
+import { getImageUrl, fetchAllPages } from "../../lib/api";
 import { logger } from '../../lib/logger';
 
 export function Testimonials() {
@@ -18,11 +18,7 @@ export function Testimonials() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(apiUrl("/testimonials"));
-        if (!response.ok) {
-          throw new Error(`Failed to fetch testimonials (${response.status})`);
-        }
-        const data = await response.json();
+        const data = await fetchAllPages("/testimonials");
         const testimonialList = Array.isArray(data)
           ? data
           : Array.isArray(data?.data)

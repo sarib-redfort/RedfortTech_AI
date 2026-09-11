@@ -106,7 +106,7 @@ export default function BlogsView({
       category: "",
       status: "Published",
       image:
-        "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=400&h=250&q=80",
+        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&h=250&q=80",
       content: "",
       createdBy: currentUserName,
     });

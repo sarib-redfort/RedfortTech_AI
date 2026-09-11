@@ -1,4 +1,4 @@
-import { apiClient, isFormData, toItem, toList } from './http';
+import { apiClient, getAllPages, isFormData, toItem } from './http';
 import { logger } from './logger';
 
 /**
@@ -46,8 +46,7 @@ export function createCrudService<T, TCreate = unknown, TUpdate = TCreate>({
 
   return {
     async getAll() {
-      const { data } = await apiClient.get(base);
-      return toList<any>(data).map(normalize);
+      return (await getAllPages<any>(base)).map(normalize);
     },
 
     async getById(id: string) {

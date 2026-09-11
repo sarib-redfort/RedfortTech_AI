@@ -20,7 +20,7 @@ export const services: Service[] = [
     id: "ai-ml",
     title: "Artificial Intelligence & Machine Learning",
     icon: "Brain",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800",
     shortDescription: "Custom machine learning models, neural networks, and predictive systems built for enterprise.",
     longDescription: "Our Artificial Intelligence & Machine Learning division engineers custom machine learning models, natural language processing pipelines, computer vision systems, and predictive analytics engines. These solutions enable AI-driven decision making and help global enterprises solve specific, high-value business challenges.",
     features: [

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { SectionTitle } from "../ui/SectionTitle";
 import { LucideIcon } from "../ui/LucideIcon";
 import { MotionCard } from "../ui/MotionCard";
-import { apiUrl, getImageUrl } from "../../lib/api";
+import { getImageUrl, fetchAllPages } from "../../lib/api";
 import type { CaseStudy } from "../../types";
 import { logger } from '../../lib/logger';
 
@@ -24,11 +24,7 @@ export function CaseStudiesSection({ limit, showTitle = true }: CaseStudiesSecti
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(apiUrl("/case-studies"));
-        if (!response.ok) {
-          throw new Error(`Failed to fetch case studies (${response.status})`);
-        }
-        const payload = await response.json();
+        const payload = await fetchAllPages("/case-studies");
         const list = Array.isArray(payload) ? payload : Array.isArray(payload?.data) ? payload.data : [];
 
         const mappedCases = list.map((item: any) => ({

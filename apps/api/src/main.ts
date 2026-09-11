@@ -50,7 +50,11 @@ async function bootstrap() {
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
-      return callback(new Error(`Origin ${origin} not allowed by CORS`), false);
+      // Refuse by omitting the CORS headers; the browser then blocks the
+      // response. Passing an Error here instead turned every foreign-origin
+      // request into a 500 logged as an unhandled exception with a stack
+      // trace, so scanners probing the API would flood the logs with noise.
+      return callback(null, false);
     },
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

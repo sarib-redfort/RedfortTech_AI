@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { SectionTitle } from "../ui/SectionTitle";
 import { LucideIcon } from "../ui/LucideIcon";
 import { MotionCard } from "../ui/MotionCard";
-import { apiUrl, getImageUrl } from "../../lib/api";
+import { getImageUrl, fetchAllPages } from "../../lib/api";
 import type { Industry } from "../../types";
 import { logger } from '../../lib/logger';
 
@@ -23,11 +23,7 @@ export function IndustriesSection({ limit }: IndustriesSectionProps) {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(apiUrl("/industries"));
-        if (!response.ok) {
-          throw new Error(`Failed to fetch industries (${response.status})`);
-        }
-        const payload = await response.json();
+        const payload = await fetchAllPages("/industries");
         const items = Array.isArray(payload?.data)
           ? payload.data
           : Array.isArray(payload)

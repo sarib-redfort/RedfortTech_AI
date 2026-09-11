@@ -3,10 +3,9 @@
  * contacts inbox (status updates instead of edits), and the signed-in user's
  * own profile.
  */
-import { apiClient, toItem, toList } from '../lib/http';
+import { apiClient, getAllPages, toItem } from '../lib/http';
 import type { Blog, Contact, UserProfile } from '../types';
 import { normalizeContact } from './normalizers';
-import { resolveCurrentUserId } from './auth';
 
 export interface DashboardStats {
   counts: Record<string, number | string | undefined>;
@@ -37,8 +36,8 @@ export const dashboardService = {
 
 export const contactService = {
   getContacts: async (): Promise<Contact[]> => {
-    const { data } = await apiClient.get('/admin/contacts');
-    return toList<any>(data).map(normalizeContact);
+    // Every page: a contact beyond the first ten is a lead nobody would see.
+    return (await getAllPages<any>('/admin/contacts')).map(normalizeContact);
   },
 
   updateStatus: async (id: string, status: Contact['status']): Promise<Contact> => {
